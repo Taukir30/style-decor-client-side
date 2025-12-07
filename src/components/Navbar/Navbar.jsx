@@ -1,9 +1,22 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
+import LogoMini from '../Logo/LogoMini';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
 
+    const { user, logOut } = useAuth();
+
+    const handleLogout = () => {
+        logOut()
+            .then( resut => {
+                console.log(resut);
+            })
+            .catch( error => {
+                console.log(error);
+            })
+    }
 
     const item = <>
         <li><NavLink to='/servises'>Services</NavLink></li>
@@ -13,8 +26,8 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-[#EAECED] pt-[25px]'>
-            <div className="navbar bg-base-100 rounded-xl px-6 py-3">
+        <div className='bg-transparent pt-5 flex justify-center items-center sticky top-0'>
+            <div className="navbar w-[90%] bg-base-100 rounded-4xl px-6 py-3">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -26,7 +39,12 @@ const Navbar = () => {
                             {item}
                         </ul>
                     </div>
-                    <Logo></Logo>
+                    <div className='hidden sm:block'>
+                        <Logo></Logo>
+                    </div>
+                    <div className='blocl sm:hidden'>
+                        <LogoMini></LogoMini>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -35,11 +53,12 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-2">
                     {
-                        // user?
-                        // <button onClick={handleLogout} className='btn btn-outline'>Log out</button> :
-                        // <Link to='/login' className="btn btn-outline">Login</Link>
+                        user?
+                        <button onClick={handleLogout} className='btn btn-outline btn-secondary text-secondary rounded-4xl hover:text-[#FBBA72]'>Log out</button> :
+                        <Link to='/login' className="btn btn-outline btn-secondary text-secondary rounded-4xl hover:text-[#FBBA72]">Login</Link>
                     }
-                    <Link to='/rider' className="btn btn-primary text-secondary rounded-md">Be a rider</Link>
+                    
+                    <Link to='/rider' className="btn btn-primary text-secondary shadow-none rounded-4xl">Be a rider</Link>
                 </div>
             </div>
         </div>
