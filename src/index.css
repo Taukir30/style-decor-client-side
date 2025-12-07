@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui" {
+themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #CAEB66;
+  --color-secondary: #03373D;
+}
+
+body, .trirong{
+  font-family: "Trirong", serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.trirong-thin {
+  font-family: "Trirong", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.trirong-extralight {
+  font-family: "Trirong", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.trirong-light {
+  font-family: "Trirong", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.trirong-regular {
+  font-family: "Trirong", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.trirong-medium {
+  font-family: "Trirong", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.trirong-semibold {
+  font-family: "Trirong", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.trirong-bold {
+  font-family: "Trirong", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.trirong-extrabold {
+  font-family: "Trirong", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.trirong-black {
+  font-family: "Trirong", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.trirong-thin-italic {
+  font-family: "Trirong", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.trirong-extralight-italic {
+  font-family: "Trirong", serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.trirong-light-italic {
+  font-family: "Trirong", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.trirong-regular-italic {
+  font-family: "Trirong", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.trirong-medium-italic {
+  font-family: "Trirong", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.trirong-semibold-italic {
+  font-family: "Trirong", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.trirong-bold-italic {
+  font-family: "Trirong", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.trirong-extrabold-italic {
+  font-family: "Trirong", serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.trirong-black-italic {
+  font-family: "Trirong", serif;
+  font-weight: 900;
+  font-style: italic;
+} */
