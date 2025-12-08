@@ -61,7 +61,7 @@ const Navbar = () => {
                         //     <Link to='/login' className="btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Login</Link>
                     }
                     {
-                        user && <Link to='/dashboard' className="btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Dashboard</Link>
+                        user && <Link to='/dashboard' className="hidden md:flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Dashboard</Link>
                     }
                     {
                         user ?
@@ -76,6 +76,7 @@ const Navbar = () => {
                                         <button onClick={handleLogout} className=''>Log out</button>
                                     </li>
                                     <li><Link>Edit Profile</Link></li>
+                                    <li><Link to='/dashboard'>Dashboard</Link></li>
                                 </ul>
                             </div> :
                             <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>
