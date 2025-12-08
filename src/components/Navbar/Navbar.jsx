@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
 import LogoMini from '../Logo/LogoMini';
 import useAuth from '../../hooks/useAuth';
+import { IoIosArrowDown } from 'react-icons/io';
 
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
 
+    console.log(user)
+
     const handleLogout = () => {
         logOut()
-            .then( resut => {
+            .then(resut => {
                 console.log(resut);
             })
-            .catch( error => {
+            .catch(error => {
                 console.log(error);
             })
     }
@@ -27,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div className='bg-transparent pt-5 flex justify-center items-center sticky top-0'>
-            <div className="navbar w-[90%] bg-base-100 rounded-4xl px-6 py-3">
+            <div className="navbar w-[90%] bg-base-100 rounded-4xl px-3 min-h-[55px] h-[55px]">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,12 +56,32 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-2">
                     {
-                        user?
-                        <button onClick={handleLogout} className='btn btn-outline btn-secondary text-secondary rounded-4xl hover:text-[#FBBA72]'>Log out</button> :
-                        <Link to='/login' className="btn btn-outline btn-secondary text-secondary rounded-4xl hover:text-[#FBBA72]">Login</Link>
+                        // user ?
+                        //     <button onClick={handleLogout} className='btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]'>Log out</button> :
+                        //     <Link to='/login' className="btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Login</Link>
                     }
-                    
-                    <Link to='/rider' className="btn btn-primary text-secondary shadow-none rounded-4xl">Be a rider</Link>
+                    {
+                        user && <Link to='/dashboard' className="btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Dashboard</Link>
+                    }
+                    {
+                        user ?
+                            <div className="dropdown">
+                                <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
+                                    <img src={user?.photoURL} alt="" className='h-[26px] rounded-4xl'/>
+                                    {/* <IoIosArrowDown /> */}
+                                    Profile
+                                </div>
+                                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-28 p-1 shadow-sm">
+                                    <li>
+                                        <button onClick={handleLogout} className=''>Log out</button>
+                                    </li>
+                                    <li><Link>Edit Profile</Link></li>
+                                </ul>
+                            </div> :
+                            <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>
+                    }
+
+                    {/* <Link to='/join' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Join Us</Link> */}
                 </div>
             </div>
         </div>
