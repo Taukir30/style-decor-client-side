@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+
 import { Link, NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
 import LogoMini from '../Logo/LogoMini';
@@ -29,8 +29,8 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-transparent pt-5 flex justify-center items-center sticky top-0'>
-            <div className="navbar w-[90%] bg-base-100 rounded-4xl px-3 min-h-[55px] h-[55px]">
+        <div className='bg-transparent pt-5 flex justify-center items-center sticky top-0 z-10'>
+            <div className="navbar w-[90%] bg-base-100 rounded-4xl px-3 min-h-[55px] h-[55px] z-20 border border-primary shadow-lg">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
