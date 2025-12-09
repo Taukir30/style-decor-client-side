@@ -1,12 +1,14 @@
 import React from 'react';
 import Hero from '../../components/Hero/Hero';
 import PopularServices from '../../components/PopularServices/PopularServices';
+import CoverageMap from '../../components/CoverageMap/CoverageMap';
 
 const Home = () => {
     return (
         <div>
             <Hero></Hero>
             <PopularServices></PopularServices>
+            <CoverageMap></CoverageMap>
         </div>
     );
 };

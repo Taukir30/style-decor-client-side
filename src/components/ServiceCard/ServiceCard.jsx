@@ -16,10 +16,10 @@ const ServiceCard = ({service}) => {
                     </div>
                 </div>
                 <div className="card-body flex flex-col items-center gap-3">
-                    <h2 className="card-title text-center">{service.name}</h2>
+                    <h2 className="card-title text-center text-secondary">{service.name}</h2>
                     <p className='text-center text-xs w-full h-[50px] overflow-hidden'>{service.description}</p>
                     <div className="card-actions justify-center mt-2">
-                        <Link className="hidden md:flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">View Details</Link>
+                        <Link className="flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">View Details</Link>
                     </div>
                 </div>
             </div>

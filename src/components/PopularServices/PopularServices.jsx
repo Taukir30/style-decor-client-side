@@ -25,7 +25,7 @@ const PopularServices = () => {
    }
 
     return (
-        <div className='my-20'>
+        <div className='py-15'>
             <MyContainer>
                 <h2 className='text-center my-10 text-4xl text-secondary'>Popular Services</h2>
                 

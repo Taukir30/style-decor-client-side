@@ -5,6 +5,11 @@ import Error from "../pages/Error/Error";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import AllServices from "../pages/AllServices/AllServices";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
+import AddCoverage from "../pages/Dashboard/AddCoverage/AddCoverage";
+import Coverage from "../pages/Dashboard/AddCoverage/Coverage";
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: 'allservices',
+                Component: AllServices
             }
         ]
     },
@@ -29,6 +38,20 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 Component: Register
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
+        children: [
+            {
+                path: 'coverage',
+                Component: Coverage
+            },
+            {
+                path: 'add-coverage',
+                Component: AddCoverage
             }
         ]
     }
