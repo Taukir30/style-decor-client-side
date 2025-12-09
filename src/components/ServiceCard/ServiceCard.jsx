@@ -7,9 +7,9 @@ const ServiceCard = ({service}) => {
 
     return (
         <div>
-            <div className="card rounded-2xl bg-base-100 shadow-xl z-0">
+            <div className="card rounded-sm bg-base-100 shadow-xl z-0">
                 <div className=''>
-                    <div className='w-full h-[250px] bg-cover rounded-t-md p-1' style={{ backgroundImage: `url(${service.image})` }}>
+                    <div className='w-full h-[250px] bg-cover rounded-t-sm p-1' style={{ backgroundImage: `url(${service.image})` }}>
                         {
                             service.isPopular && <div className="badge bg-secondary rounded-2xl text-xs text-white">Popular</div>
                         }
@@ -19,7 +19,7 @@ const ServiceCard = ({service}) => {
                     <h2 className="card-title text-center">{service.name}</h2>
                     <p className='text-center text-xs w-full h-[50px] overflow-hidden'>{service.description}</p>
                     <div className="card-actions justify-center mt-2">
-                        <Link className="btn btn-primary text-secondary font-bold shadow-none rounded-4xl h-[35px]">View Details</Link>
+                        <Link className="hidden md:flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">View Details</Link>
                     </div>
                 </div>
             </div>
