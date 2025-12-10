@@ -19,7 +19,7 @@ const ServiceCard = ({service}) => {
                     <h2 className="card-title text-center text-secondary">{service.name}</h2>
                     <p className='text-center text-xs w-full h-[50px] overflow-hidden'>{service.description}</p>
                     <div className="card-actions justify-center mt-2">
-                        <Link className="flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">View Details</Link>
+                        <Link to={`/servicedetails/${service._id}`} className="flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">View Details</Link>
                     </div>
                 </div>
             </div>

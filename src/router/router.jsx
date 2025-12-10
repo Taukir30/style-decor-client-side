@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import AddCoverage from "../pages/Dashboard/AddCoverage/AddCoverage";
 import Coverage from "../pages/Dashboard/AddCoverage/Coverage";
+import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allservices',
                 Component: AllServices
+            },
+            {
+                path: 'servicedetails/:id',
+                Component: ServiceDetails
             }
         ]
     },

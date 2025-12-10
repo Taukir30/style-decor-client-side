@@ -26,18 +26,6 @@ const CoverageMap = () => {
 
     const mapRef = useRef();
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const location = e.target.location.value;
-        const district = coverageAreas.find(c => c.district.toLowerCase().includes(location.toLowerCase()));
-
-        if (district) {
-            const coordination = [district.latitude, district.longitude];
-            // console.log(coordination)
-            mapRef.current.flyTo(coordination, 12);
-        }
-    }
-
     if (isLoading) {
         return <Loading></Loading>
     }
