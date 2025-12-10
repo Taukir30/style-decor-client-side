@@ -31,32 +31,32 @@ const Coverage = () => {
                     <h1 className='text-2xl text-secondary'>Coverage Areas</h1>
                     <Link to='/dashboard/add-coverage' className="btn btn-outline btn-secondary w-45 text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Add Coverage Area</Link>
 
-                    {
-                        coverageAreas.map((area, key) => <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100">
-                            <table className="table">
-                                {/* head */}
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>District</th>
-                                        <th>latitude</th>
-                                        <th>longitude</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {/* row 1 */}
-                                    <tr>
-                                        <th>{key+1}</th>
-                                        <td>{area.districtName}</td>
-                                        <td>{area.latitude}</td>
-                                        <td>{area.longitude}</td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>)
-                    }
+                    <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100">
+                        <table className="table">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>District</th>
+                                    <th>latitude</th>
+                                    <th>longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* row 1 */}
+                                {
+                                    coverageAreas.map((area, key) => <tr key={key}>
+                                            <th>{key + 1}</th>
+                                            <td>{area.districtName}</td>
+                                            <td>{area.latitude}</td>
+                                            <td>{area.longitude}</td>
+                                        </tr>
 
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </MyContainer>
         </div>

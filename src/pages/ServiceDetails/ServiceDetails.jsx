@@ -56,7 +56,7 @@ const ServiceDetails = () => {
     //add booking fuction
     const handleBooking = (data) => {
 
-        const finalData = { ...data, created_at: new Date().toISOString(), serviceId: serviceDetails._id };
+        const finalData = { ...data, created_at: new Date().toISOString(), serviceId: serviceDetails._id, status: 'pending' };
 
         console.log(finalData);
 

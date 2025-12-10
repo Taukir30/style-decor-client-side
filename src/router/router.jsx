@@ -11,6 +11,7 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import AddCoverage from "../pages/Dashboard/AddCoverage/AddCoverage";
 import Coverage from "../pages/Dashboard/AddCoverage/Coverage";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
+import MyBookings from "../pages/Dashboard/MyBookings";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: 'add-coverage',
                 Component: AddCoverage
+            },
+            {
+                path: 'my-bookings',
+                Component: MyBookings
             }
         ]
     }
