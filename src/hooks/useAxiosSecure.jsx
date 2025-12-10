@@ -1,5 +1,4 @@
 import React from 'react';
-
 import axios from "axios";
 import { use, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext/AuthContext";
@@ -9,7 +8,7 @@ const instance = axios.create({
 })
 
 const useAxiosSecure = () => {
-
+    
     const { user } = use(AuthContext);
 
     useEffect( () => {
