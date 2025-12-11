@@ -15,6 +15,7 @@ import MyBookings from "../pages/Dashboard/MyBookings";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccessful from "../pages/Dashboard/Payment/PaymentSuccessful";
 import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
+import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path: 'my-bookings',
                 Component: MyBookings
+            },
+            {
+                path: 'payment-history',
+                Component: PaymentHistory
             },
             {
                 path: 'payment/:id',

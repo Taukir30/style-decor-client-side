@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import MyContainer from '../../../components/MyContainer/MyContainer';
 import { Link, useSearchParams } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Loading from '../../../components/Loading/Loading';
 
 const PaymentSuccessful = () => {
+    const [loading, setLoading] =useState(true)
 
     const [paymentInfo, setPaymentInfo] = useState();
 
@@ -15,6 +17,7 @@ const PaymentSuccessful = () => {
     console.log(sessionId)
 
     useEffect( () => {
+        // setLoading(true);
         if(sessionId){
             axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
                 .then( res => {
@@ -25,17 +28,24 @@ const PaymentSuccessful = () => {
                             trackingId: res.data.trackingId
                         }
                     )
+                    setLoading(false)
                 })
         }
     }, [sessionId, axiosSecure])
+
+    console.log(paymentInfo)
+
+    if(loading){
+        return <Loading></Loading>
+    }
 
     return (
         <div className='my-10'>
             <MyContainer>
                 <h1 className='text-xl text-green-700'>Payment Successful</h1>
 
-                <p className='text-primary my-5'>Transaction ID: <span className='font-bold text-secondary'> {paymentInfo.transactionId}</span></p>
-                <p className='text-primary'>Project Tracking ID: <span className='font-bold text-secondary'> {paymentInfo.trackingId}</span></p>
+                <p className='text-primary my-5'>Transaction ID: <span className='font-bold text-secondary'> {paymentInfo?.transactionId}</span></p>
+                <p className='text-primary'>Project Tracking ID: <span className='font-bold text-secondary'> {paymentInfo?.trackingId}</span></p>
 
                 <Link to='/dashboard/my-bookings' className='btn btn-outline btn-secondary my-5 rounded-4xl'>My Bookings</Link>
             </MyContainer>

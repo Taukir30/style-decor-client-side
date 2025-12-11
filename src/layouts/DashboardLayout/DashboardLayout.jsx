@@ -4,6 +4,7 @@ import Logo from '../../components/Logo/Logo';
 import LogoMini from '../../components/Logo/LogoMini';
 import useAuth from '../../hooks/useAuth';
 import { LuBookmarkCheck, LuMapPin } from "react-icons/lu";
+import { MdOutlinePayment } from "react-icons/md";
 
 const DashboardLayout = () => {
 
@@ -86,6 +87,13 @@ const DashboardLayout = () => {
                             <NavLink to='/dashboard/my-bookings'>
                                 <LuBookmarkCheck />
                                 <span className="is-drawer-close:hidden">My Bookings</span>                                
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to='/dashboard/payment-history'>
+                                <MdOutlinePayment />
+                                <span className="is-drawer-close:hidden">Payment History</span>                                
                             </NavLink>
                         </li>
 
