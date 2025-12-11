@@ -12,6 +12,9 @@ import AddCoverage from "../pages/Dashboard/AddCoverage/AddCoverage";
 import Coverage from "../pages/Dashboard/AddCoverage/Coverage";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import MyBookings from "../pages/Dashboard/MyBookings";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentSuccessful from "../pages/Dashboard/Payment/PaymentSuccessful";
+import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +65,18 @@ export const router = createBrowserRouter([
             {
                 path: 'my-bookings',
                 Component: MyBookings
+            },
+            {
+                path: 'payment/:id',
+                Component: Payment
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccessful
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
             }
         ]
     }

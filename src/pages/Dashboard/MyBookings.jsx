@@ -24,7 +24,19 @@ const MyBookings = () => {
     console.log(myBookings)
 
     //cancelling function
-    const handleDelete = (id) => {
+    const handleDelete = (id, status) => {
+
+        console.log(status)
+        if ( status !== 'pending' && status !== 'planning phase' ) {
+            Swal.fire({
+                icon: "error",
+                title: "Can not cancel at this stage !",
+                text: "you can cancel only in planning stage or before",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+            return;
+        }
+
         Swal.fire({                                                 //alert for confirmation
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -37,10 +49,10 @@ const MyBookings = () => {
             if (result.isConfirmed) {
 
                 axiosSecure.delete(`/deletebooking/${id}`)      //calling delete api with axios
-                    .then( res => {
+                    .then(res => {
                         console.log(res.data)
 
-                        if(res.data.deletedCount){
+                        if (res.data.deletedCount) {
 
                             refetch();                          //refreshing data loading using tankstack
 
@@ -69,15 +81,16 @@ const MyBookings = () => {
 
 
                     <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100">
-                        <table className="table">
+                        <table className="table text-xs md:text-base">
                             {/* head */}
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Service Name</th>
                                     <th>Cost</th>
-                                    <th>Location</th>
+                                    <th className='hidden md:block'>Location</th>
                                     <th>Status</th>
+                                    <th>Payment</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -89,14 +102,24 @@ const MyBookings = () => {
                                         <th>{index + 1}</th>
                                         <td>{booking.serviceName}</td>
                                         <td>{booking.servicePrice}</td>
-                                        <td>{booking.location}</td>
+                                        <td className='hidden md:table-cell'>{booking.location}</td>
                                         <td>
-                                            <span className={`badge ${booking.status === 'completed' ? 'badge-success' : 'badge-primary'} text-white px-3 py-2 rounded-2xl`}>
+                                            <span className={`overflow-hidden ${booking.status === 'completed' ? 'text-green-700' : 'text-orange-700'} px-3 py-2 rounded-2xl`}>
                                                 {booking.status}
                                             </span>
                                         </td>
                                         <td>
-                                            {booking.status === 'pending' && <button onClick={()=>handleDelete(booking._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>}
+                                            {
+                                                booking.paymentStatus === 'paid' ?
+                                                    <span className='text-green-500 '>Paid</span> :
+                                                    <Link to={`/dashboard/payment/${booking._id}`} className='btn btn-success text-green-950 rounded-4xl h-6'>Pay</Link>
+                                            }
+                                        </td>
+                                        <td>
+                                            <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
+                                            {
+                                                // booking.status === 'pending' && <button onClick={()=>handleDelete(booking._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
+                                            }
                                         </td>
                                     </tr>)
                                 }
