@@ -3,7 +3,7 @@ import MyContainer from '../../components/MyContainer/MyContainer';
 import Loading from '../../components/Loading/Loading';
 import useAxios from '../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FcRating } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
@@ -25,6 +25,8 @@ const ServiceDetails = () => {
 
     const axios = useAxios()
     const axiosSecure = useAxiosSecure();
+
+    const navigate = useNavigate();
 
     //tanstack for loading service deatails
     const { isLoading, data: serviceDetails } = useQuery({
@@ -66,13 +68,17 @@ const ServiceDetails = () => {
 
                 modalRef.current.close();
 
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Booking Confirmed successfully!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                if(res.data.insertedId){
+                    navigate('/dashboard/my-bookings')
+
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Booking successful, please pay to confirm!",
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
             })
             .catch( error => console.log(error) );
     }
