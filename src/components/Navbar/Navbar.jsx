@@ -76,12 +76,13 @@ const Navbar = () => {
                                     {/* <IoIosArrowDown /> */}
                                     Profile
                                 </div>
-                                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-28 p-1 shadow-sm">
+                                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
+                                    <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                    <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li>
                                         <button onClick={handleLogout} className=''>Log out</button>
                                     </li>
-                                    <li><Link to='/dashboard'>Dashboard</Link></li>
                                 </ul>
                             </div> :
                             <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>

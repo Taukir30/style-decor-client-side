@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const SocialLogin = () => {
 
@@ -11,11 +12,27 @@ const SocialLogin = () => {
 
     const navigate = useNavigate();
 
+    const axiosSecure = useAxiosSecure();
+
     const hangleGoogleSignIn = () => {
         signInGoogle()
             .then(result => {
                 console.log(result.user);
-                navigate(location.state || '/');
+
+                //create user in database
+                const userInfo = {
+                    email: result.user.email,
+                    displayName: result.user.name,
+                    photoURL: result.user.photoURL
+                }
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user created in the database')
+                        }
+                        navigate(location.state || '/');
+                    })
+
             })
             .catch(error => {
                 console.log(error);

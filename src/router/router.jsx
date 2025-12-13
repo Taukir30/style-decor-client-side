@@ -16,6 +16,8 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccessful from "../pages/Dashboard/Payment/PaymentSuccessful";
 import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
+import BeADecorator from "../pages/BeADecorator/BeADecorator";
+import AllDecorators from "../pages/Dashboard/AllDecorators";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: 'servicedetails/:id',
                 Component: ServiceDetails
+            },
+            {
+                path: '/beadecorator',
+                element: <PrivateRoute> <BeADecorator></BeADecorator> </PrivateRoute>
             }
         ]
     },
@@ -82,6 +88,10 @@ export const router = createBrowserRouter([
             {
                 path: 'payment-cancelled',
                 Component: PaymentCancelled
+            },
+            {
+                path: 'alldecorators',
+                Component: AllDecorators
             }
         ]
     }

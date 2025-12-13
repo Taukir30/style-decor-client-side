@@ -40,6 +40,7 @@ const PaymentHistory = () => {
                                     <th></th>
                                     <th>Service</th>
                                     <th>Amount</th>
+                                    <th>Paid at</th>
                                     <th>Transaction ID</th>
                                 </tr>
                             </thead>
@@ -47,11 +48,18 @@ const PaymentHistory = () => {
                                 {/* row 1 */}
                                 {
                                     paymentRecords.map((record, key) => <tr key={key}>
-                                            <th>{key + 1}</th>
-                                            <td>{record.serviceName}</td>
-                                            <td>{record.amount}</td>
-                                            <td>{record.transactionId}</td>
-                                        </tr>
+                                        <th>{key + 1}</th>
+                                        <td>{record.serviceName}</td>
+                                        <td>{record.amount}</td>
+                                        <td>
+                                            {new Date(record.paidAt).toLocaleDateString()}{" "}
+                                            {new Date(record.paidAt).toLocaleTimeString([], {
+                                                hour: "2-digit",
+                                                minute: "2-digit"
+                                            })}
+                                        </td>
+                                        <td>{record.transactionId}</td>
+                                    </tr>
 
                                     )
                                 }

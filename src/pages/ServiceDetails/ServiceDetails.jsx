@@ -206,6 +206,10 @@ const ServiceDetails = () => {
                             {/*price */}
                             <label className="label text-secondary">Price</label>
                             <input type="text" {...register('servicePrice')} className="input w-full rounded-4xl" defaultValue={serviceDetails?.price} readOnly />
+                            
+                            {/*schedule */}
+                            <label className="label text-secondary">Date</label>
+                            <input type="date" {...register('scheduleDate')} className="input w-full rounded-4xl"  />
 
                             <button className="btn btn-primary text-base text-secondary font-bold shadow-none rounded-4xl w-full mt-3">Confirm Booking</button>
                         </fieldset>

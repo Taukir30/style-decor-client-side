@@ -2,14 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import MyContainer from '../../../components/MyContainer/MyContainer';
 import { Link } from 'react-router';
-import axios from 'axios';
 import useAxios from '../../../hooks/useAxios';
+import Swal from 'sweetalert2';
 
 const AddCoverage = () => {
 
     const axios = useAxios();
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
 
     const handleAddCoverage = (data) => {
 
@@ -19,7 +19,15 @@ const AddCoverage = () => {
 
         axios.post('/addcoverage', finalData)
             .then(res => {
-                console.log('after saving coverage', res.data)
+                console.log('after saving coverage', res.data);
+                reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Coverage district added!",
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             })
 
     }
@@ -34,11 +42,11 @@ const AddCoverage = () => {
 
 
                     <form onSubmit={handleSubmit(handleAddCoverage)}>
-                        
+
                         <div className='flex flex-col md:flex-row my-5 gap-5'>
-                            
+
                             <div className='w-full md:w-1/2'>
-                                
+
                                 <fieldset className="fieldset">
                                     {/* district name */}
                                     <label className="label mt-3 font-bold text-secondary">District Name</label>
