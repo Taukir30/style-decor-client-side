@@ -22,7 +22,7 @@ const SocialLogin = () => {
                 //create user in database
                 const userInfo = {
                     email: result.user.email,
-                    displayName: result.user.name,
+                    displayName: result.user.displayName,
                     photoURL: result.user.photoURL
                 }
                 axiosSecure.post('/users', userInfo)

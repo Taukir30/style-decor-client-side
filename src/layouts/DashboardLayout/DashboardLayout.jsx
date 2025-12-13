@@ -6,6 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import { LuBookmarkCheck, LuMapPin } from "react-icons/lu";
 import { MdOutlinePayment } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
+import { LuUserCog } from "react-icons/lu";
 
 const DashboardLayout = () => {
 
@@ -103,6 +104,13 @@ const DashboardLayout = () => {
                             <NavLink to='/dashboard/alldecorators' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Decorators">
                                 <GrUserWorker />
                                 <span className="is-drawer-close:hidden">Decorators</span>                                
+                            </NavLink>
+                        </li>
+                        
+                        <li>
+                            <NavLink to='/dashboard/users-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management">
+                                <LuUserCog />
+                                <span className="is-drawer-close:hidden">Users Management</span>                                
                             </NavLink>
                         </li>
 

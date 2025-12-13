@@ -18,6 +18,7 @@ import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import BeADecorator from "../pages/BeADecorator/BeADecorator";
 import AllDecorators from "../pages/Dashboard/AllDecorators";
+import UsersManagement from "../pages/Dashboard/UsersManagement";
 
 export const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
             {
                 path: 'alldecorators',
                 Component: AllDecorators
+            },
+            {
+                path: 'users-management',
+                Component: UsersManagement
             }
         ]
     }
