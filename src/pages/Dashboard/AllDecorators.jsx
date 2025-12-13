@@ -19,7 +19,7 @@ const AllDecorators = () => {
         }
     })
 
-    console.log(AllDecorators)
+    // console.log(AllDecorators)
 
     //Deleting function
     const handleDelete = (id) => {
@@ -58,6 +58,7 @@ const AllDecorators = () => {
     }
 
     const handleApproval = (decorator) => {
+        console.log(decorator.email)
         const updateInfo = { status: 'approved', email: decorator.email };
         axiosSecure.patch(`/decorators/${decorator._id}`, updateInfo)
             .then(res => {

@@ -19,6 +19,8 @@ import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import BeADecorator from "../pages/BeADecorator/BeADecorator";
 import AllDecorators from "../pages/Dashboard/AllDecorators";
 import UsersManagement from "../pages/Dashboard/UsersManagement";
+import DashHome from "../pages/Dashboard/DashHome";
+import AdminRoute from "./AdminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +65,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoute> <DashboardLayout></DashboardLayout> </PrivateRoute>,
         children: [
             {
+                index: true,
+                Component: DashHome
+            },
+            {
                 path: 'coverage',
                 Component: Coverage
             },
@@ -96,7 +102,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'users-management',
-                Component: UsersManagement
+                element: <AdminRoute> <UsersManagement></UsersManagement> </AdminRoute>
             }
         ]
     }

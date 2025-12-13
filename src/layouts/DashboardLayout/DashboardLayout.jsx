@@ -7,8 +7,12 @@ import { LuBookmarkCheck, LuMapPin } from "react-icons/lu";
 import { MdOutlinePayment } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { LuUserCog } from "react-icons/lu";
+import useRole from '../../hooks/useRole';
 
 const DashboardLayout = () => {
+
+    const { role } = useRole();
+    console.log(role)
 
     const { user, logOut } = useAuth();
 
@@ -62,7 +66,7 @@ const DashboardLayout = () => {
                 </nav>
                 {/* Page content here */}
                 <Outlet></Outlet>
-                
+
             </div>
 
             <div className="drawer-side is-drawer-close:overflow-visible">
@@ -80,39 +84,54 @@ const DashboardLayout = () => {
                         </li>
 
                         <li>
-                            <NavLink to='/dashboard/coverage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Coverage Area"> 
-                                <LuMapPin />
-                                <span className="is-drawer-close:hidden">Coverage Area</span>                                
-                            </NavLink>
-                        </li>
-
-                        <li>
                             <NavLink to='/dashboard/my-bookings' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
                                 <LuBookmarkCheck />
-                                <span className="is-drawer-close:hidden">My Bookings</span>                                
+                                <span className="is-drawer-close:hidden">My Bookings</span>
                             </NavLink>
                         </li>
 
                         <li>
                             <NavLink to='/dashboard/payment-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
                                 <MdOutlinePayment />
-                                <span className="is-drawer-close:hidden">Payment History</span>                                
+                                <span className="is-drawer-close:hidden">Payment History</span>
                             </NavLink>
                         </li>
-                        
-                        <li>
-                            <NavLink to='/dashboard/alldecorators' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Decorators">
-                                <GrUserWorker />
-                                <span className="is-drawer-close:hidden">Decorators</span>                                
-                            </NavLink>
-                        </li>
-                        
-                        <li>
-                            <NavLink to='/dashboard/users-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management">
-                                <LuUserCog />
-                                <span className="is-drawer-close:hidden">Users Management</span>                                
-                            </NavLink>
-                        </li>
+
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink to='/dashboard/alldecorators' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Decorators">
+                                        <GrUserWorker />
+                                        <span className="is-drawer-close:hidden">Decorators</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
+
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink to='/dashboard/users-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management">
+                                        <LuUserCog />
+                                        <span className="is-drawer-close:hidden">Users Management</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
+
+
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink to='/dashboard/coverage' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Coverage Area">
+                                        <LuMapPin />
+                                        <span className="is-drawer-close:hidden">Coverage Area</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
 
                         {/* List item */}
                         <li>
