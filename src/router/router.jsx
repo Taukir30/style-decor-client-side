@@ -21,6 +21,10 @@ import AllDecorators from "../pages/Dashboard/AllDecorators";
 import UsersManagement from "../pages/Dashboard/UsersManagement";
 import DashHome from "../pages/Dashboard/DashHome";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import Services from "../pages/Dashboard/Services/Services";
+import AddService from "../pages/Dashboard/Services/AddService";
+import Categories from "../pages/Dashboard/Categories/Categories";
+import AddCategory from "../pages/Dashboard/Categories/AddCategory";
 
 export const router = createBrowserRouter([
     {
@@ -103,7 +107,23 @@ export const router = createBrowserRouter([
             {
                 path: 'users-management',
                 element: <AdminRoute> <UsersManagement></UsersManagement> </AdminRoute>
-            }
+            },
+            {
+                path: 'services-management',
+                element: <AdminRoute> <Services></Services> </AdminRoute>
+            },
+            {
+                path: 'add-service',
+                element: <AdminRoute> <AddService></AddService> </AdminRoute>
+            },
+            {
+                path: 'all-category',
+                element: <AdminRoute> <Categories></Categories> </AdminRoute>
+            },
+            {
+                path: 'add-category',
+                element: <AdminRoute> <AddCategory></AddCategory> </AdminRoute>
+            },
         ]
     }
 

@@ -4,7 +4,7 @@ import Logo from '../../components/Logo/Logo';
 import LogoMini from '../../components/Logo/LogoMini';
 import useAuth from '../../hooks/useAuth';
 import { LuBookmarkCheck, LuMapPin } from "react-icons/lu";
-import { MdOutlinePayment } from "react-icons/md";
+import { MdOutlineMedicalServices, MdOutlinePayment, MdOutlinePlaylistAdd } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { LuUserCog } from "react-icons/lu";
 import useRole from '../../hooks/useRole';
@@ -108,7 +108,6 @@ const DashboardLayout = () => {
                             </>
                         }
 
-
                         {
                             role === 'admin' && <>
                                 <li>
@@ -120,7 +119,27 @@ const DashboardLayout = () => {
                             </>
                         }
 
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink to='/dashboard/services-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Package Management">
+                                        <MdOutlineMedicalServices />
+                                        <span className="is-drawer-close:hidden">Services Package Management</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
 
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink to='/dashboard/all-category' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Category Management">
+                                        <MdOutlinePlaylistAdd />
+                                        <span className="is-drawer-close:hidden">Category Management</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
 
                         {
                             role === 'admin' && <>
