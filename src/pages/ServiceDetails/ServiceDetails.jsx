@@ -48,7 +48,7 @@ const ServiceDetails = () => {
 
     const locations = coverageAreas.map(c => c.districtName);                    //taking only the region property from the whole object
 
-    // console.log(locations)
+    console.log(serviceDetails)
 
     //modal function
     const handleBidModal = () => {
@@ -103,7 +103,7 @@ const ServiceDetails = () => {
                 </div>
                 <div className="flex flex-col lg:flex-row gap-10">
                     <div className="w-full lg:w-1/3">
-                        <div className="h-[400px] border border-gray-200 rounded-lg p-6 flex flex-col items-center text-center shadow-sm bg-cover bg-center" style={{ backgroundImage: `url(${serviceDetails.image})` }}>
+                        <div className="h-[400px] border border-gray-200 rounded-lg p-6 flex flex-col items-center text-center shadow-sm bg-cover bg-center" style={{ backgroundImage: `url(${serviceDetails.photoURL})` }}>
 
 
                         </div>
@@ -113,10 +113,10 @@ const ServiceDetails = () => {
 
                             <div>
                                 <h4 className="font-bold text-xl tracking-wide uppercase mb-1 text-secondary">
-                                    {serviceDetails.name}
+                                    {serviceDetails.service_name}
                                 </h4>
                                 <p className="text-primary font-bold text-base flex  flex-col md:flex-row">
-                                    <span className='mr-2 text-secondary'>Category:</span> {serviceDetails.category}
+                                    <span className='mr-2 text-secondary'>Category:</span> {serviceDetails.service_category}
                                 </p>
                             </div>
                         </div>
@@ -127,13 +127,13 @@ const ServiceDetails = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 mt-4">
                             <div className="flex items-center gap-3">
                                 <FcMoneyTransfer />
-                                <span className='mr-2 text-secondary'>Price:</span>
-                                <span className="text-gray-600">{serviceDetails.price}</span>
+                                <span className='mr-2 text-secondary'>Price :</span>
+                                <span className="text-gray-600">{serviceDetails.cost}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <FcClock />
-                                <span className='mr-2 text-secondary'>Installation time:</span>
-                                <span className="text-gray-600">{serviceDetails.duration}</span>
+                                <span className='mr-2 text-secondary'>Unit :</span>
+                                <span className="text-gray-600">{serviceDetails.unit}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <FcRating />
@@ -153,7 +153,7 @@ const ServiceDetails = () => {
                             <h3 className='text-base font-bold text-secondary'>Facilities:</h3>
                             <ul className='list-disc mx-10 text-sm text-primary'>
                                 {
-                                    serviceDetails.facilities.map((facility, index) => <li key={index}>{facility}</li>)
+                                    // serviceDetails.facilities.map((facility, index) => <li key={index}>{facility}</li>)
                                 }
                             </ul>
                         </div>

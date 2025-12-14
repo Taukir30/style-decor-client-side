@@ -56,7 +56,7 @@ const AddCategory = () => {
 
                         </div>
 
-                        <button className='btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]'>Add Area</button>
+                        <button className='btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]'>Add Category</button>
                     </form>
 
                 </div>

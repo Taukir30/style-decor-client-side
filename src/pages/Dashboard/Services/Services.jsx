@@ -75,10 +75,11 @@ const Services = () => {
                                 <tr>
                                     <th></th>
                                     <th>Name</th>
+                                    <th className='hidden md:table-cell'>Unit</th>
                                     <th>Cost</th>
                                     <th className='hidden md:table-cell'>Category</th>
                                     <th className='hidden md:table-cell'>Applicaion Date</th>
-                                    
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -89,27 +90,31 @@ const Services = () => {
                                     allServices.map((service, index) => <tr key={index}>
                                         <th>{index + 1}</th>
                                         <td>
-                                             <div className="flex items-center gap-3">
+                                            <div className="flex items-center gap-3">
                                                 <div className="avatar">
                                                     <div className="mask mask-squircle h-12 w-12">
                                                         <img
-                                                            src={service.image}
+                                                            src={service.imageURL}
                                                             alt="Avatar Tailwind CSS Component" />
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold">{service.name}</div>
+                                                    <div className="font-bold">{service.service_name}</div>
                                                 </div>
                                             </div>
-                                            
+
                                         </td>
-                                        <td>{service.price}</td>
-                                        <td className='hidden md:table-cell'>{service.category}</td>
+                                        <td className='hidden md:table-cell'>{service.unit}</td>
+                                        <td>{service.cost}</td>
+                                        <td className='hidden md:table-cell'>{service.service_category}</td>
                                         <td className='hidden md:table-cell'>{new Date(service.createdAt).toLocaleDateString()}{" "}</td>
 
-                                        
+
                                         <td>
-                                            <button onClick={() => handleDelete(service._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>{service.status === 'pending' ? 'Reject' : 'Remove'}</button>
+                                            <div className='flex gap-1'>
+                                                <button onClick={() => handleEdit(service._id)} className='btn btn-outline border-green-700 text-green-700 rounded-4xl text'>Edit</button>
+                                                <button onClick={() => handleDelete(service._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Delete</button>
+                                            </div>
                                         </td>
                                     </tr>)
                                 }
