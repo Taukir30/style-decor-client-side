@@ -48,18 +48,48 @@ const ServiceDetails = () => {
 
     const locations = coverageAreas.map(c => c.districtName);                    //taking only the region property from the whole object
 
-    console.log(serviceDetails)
+    // console.log(serviceDetails)
 
     //modal function
     const handleBidModal = () => {
+        
+        if(!user) {
+            return navigate('/login');
+        }
+
         modalRef.current.showModal();
     }
 
     //add booking fuction
     const handleBooking = (data) => {
 
-        const finalData = { ...data, created_at: new Date().toISOString(), serviceId: serviceDetails._id, status: 'pending' };
+        let price = 0;
 
+        const area = parseInt(data.area);
+        // const finalData = { ...data, created_at: new Date().toISOString(), serviceId: serviceDetails._id, status: 'pending' };
+
+        
+        if( serviceDetails.unit === 'sqr-ft' ){
+            price = area * data.pricePerUnit;
+        }else{
+            price = data.pricePerUnit;
+        }
+        
+        const finalData = {
+            name: data.name,
+            email: data.email,
+            contact: data.contact,
+            location: data.location,
+            address: data.address,
+            serviceName: data.serviceName,
+            servicePrice: price,
+            createdAt: new Date().toISOString(),
+            serviceId: serviceDetails._id,
+            status: 'pending',
+            paymentStatus: 'unpaid',
+            scheduleDate: data.scheduleDate
+        }
+        
         console.log(finalData);
 
         axiosSecure.post('/addbooking', finalData)
@@ -201,12 +231,20 @@ const ServiceDetails = () => {
 
                             {/*Service name */}
                             <label className="label text-secondary">Service Name</label>
-                            <input type="text" {...register('serviceName')} className="input w-full rounded-4xl" defaultValue={serviceDetails?.name} readOnly />
+                            <input type="text" {...register('serviceName')} className="input w-full rounded-4xl" defaultValue={serviceDetails?.service_name} readOnly />
 
                             {/*price */}
-                            <label className="label text-secondary">Price</label>
-                            <input type="text" {...register('servicePrice')} className="input w-full rounded-4xl" defaultValue={serviceDetails?.price} readOnly />
+                            <label className="label text-secondary">Price per unit</label>
+                            <input type="text" {...register('pricePerUnit')} className="input w-full rounded-4xl" defaultValue={serviceDetails?.cost} readOnly />
                             
+                            {
+                                serviceDetails.unit === 'sqr-ft' &&
+                                <div className=''>
+                                    <label className="label text-secondary">Area in sqr-ft</label>
+                                    <input type="text" {...register('area')} className="input w-full rounded-4xl" />
+                                </div>
+                            }
+
                             {/*schedule */}
                             <label className="label text-secondary">Date</label>
                             <input type="date" {...register('scheduleDate')} className="input w-full rounded-4xl"  />
@@ -218,7 +256,7 @@ const ServiceDetails = () => {
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="flex btn btn-outline btn-secondary text-secondary rounded-4xl h-[35px]">Cancel</button>
+                            <button className="flex btn btn-outline btn-secondary rounded-4xl h-[35px]">Cancel</button>
                         </form>
                     </div>
                 </div>

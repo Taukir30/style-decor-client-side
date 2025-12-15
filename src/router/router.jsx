@@ -25,6 +25,7 @@ import Services from "../pages/Dashboard/Services/Services";
 import AddService from "../pages/Dashboard/Services/AddService";
 import Categories from "../pages/Dashboard/Categories/Categories";
 import AddCategory from "../pages/Dashboard/Categories/AddCategory";
+import AssignDecorator from "../pages/Dashboard/AssignDecorator";
 
 export const router = createBrowserRouter([
     {
@@ -123,6 +124,10 @@ export const router = createBrowserRouter([
             {
                 path: 'add-category',
                 element: <AdminRoute> <AddCategory></AddCategory> </AdminRoute>
+            },
+            {
+                path: 'assign-decorator',
+                element: <AdminRoute> <AssignDecorator></AssignDecorator> </AdminRoute>
             },
         ]
     }

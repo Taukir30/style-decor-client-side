@@ -19,7 +19,7 @@ const AllDecorators = () => {
         }
     })
 
-    // console.log(AllDecorators)
+    console.log(AllDecorators)
 
     //Deleting function
     const handleDelete = (id) => {
@@ -96,7 +96,8 @@ const AllDecorators = () => {
                                     <th>Experties</th>
                                     <th className='hidden md:table-cell'>Location</th>
                                     <th className='hidden md:table-cell'>Applicaion Date</th>
-                                    <th>Status</th>
+                                    <th>Application Status</th>
+                                    <th>Work Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -110,16 +111,17 @@ const AllDecorators = () => {
                                         <td>{decorator.experties}</td>
                                         <td className='hidden md:table-cell'>{decorator.location}</td>
                                         <td className='hidden md:table-cell'>{new Date(decorator.createdAt).toLocaleDateString()}{" "}</td>
-                                        
+                                        <td>{decorator.workStatus}</td>
+
                                         <td>
                                             {
                                                 decorator.status === 'pending' ?
-                                                <button onClick={() => handleApproval(decorator)} className='btn btn-success text-green-950 rounded-4xl h-6'>Approve</button> :
-                                                <span className='text-green-500 '>Approved</span> 
+                                                    <button onClick={() => handleApproval(decorator)} className='btn btn-success text-green-950 rounded-4xl h-6'>Approve</button> :
+                                                    <span className='text-green-500 '>Approved</span>
                                             }
                                         </td>
                                         <td>
-                                            <button onClick={() => handleDelete(decorator._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>{ decorator.status === 'pending' ? 'Reject' : 'Remove'}</button>
+                                            <button onClick={() => handleDelete(decorator._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>{decorator.status === 'pending' ? 'Reject' : 'Remove'}</button>
                                             {
                                                 // booking.status === 'pending' && <button onClick={()=>handleDelete(booking._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
                                             }
