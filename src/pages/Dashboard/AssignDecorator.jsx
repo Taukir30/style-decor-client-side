@@ -18,7 +18,7 @@ const AssignDecorator = () => {
     const axiosSecure = useAxiosSecure();
 
     //tankstack for loading pending bookings
-    const { isLoading, data: pendingBookings = [], refetch } = useQuery({
+    const { isLoading, data: pendingBookings = [], refetch: bookingRefetch } = useQuery({
         queryKey: ['pendingBookings'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allbookings?status=pending`);
@@ -26,12 +26,12 @@ const AssignDecorator = () => {
         }
     })
 
-    console.log(pendingBookings)
+    // console.log(pendingBookings)
 
     //cancelling function
     const handleDelete = (id, status) => {
 
-        console.log(status)
+        // console.log(status)
         if (status !== 'pending' && status !== 'planning phase') {
             Swal.fire({
                 icon: "error",
@@ -59,7 +59,7 @@ const AssignDecorator = () => {
 
                         if (res.data.deletedCount) {
 
-                            refetch();                          //refreshing data loading using tankstack
+                            bookingRefetch();                          //refreshing data loading using tankstack
 
                             Swal.fire({
                                 title: "Deleted!",
@@ -76,10 +76,10 @@ const AssignDecorator = () => {
     //modal function
     const openAssignDecoratorModal = (booking) => {
         setSelectedBooking(booking);
-        console.log(booking)
+        // console.log(booking)
         modalRef.current.showModal();
     }
-    console.log(selectedBooking)
+    // console.log(selectedBooking)
 
     //tanckstack for available decorators
     const { isLoading: decoratorLoading, data: availableDecorators = [] } = useQuery({
@@ -90,6 +90,30 @@ const AssignDecorator = () => {
             return res.data;
         }
     })
+
+    const handleAssign = (decorator) => {
+        const decoratorAssignInfo = {
+            decoratorId: decorator._id,
+            decoratorEmail: decorator.email,
+            decoratorName: decorator.name,
+            bookingId: selectedBooking._id
+        }
+        // console.log(decoratorAssignInfo)
+        axiosSecure.patch(`/booking/${selectedBooking._id}`, decoratorAssignInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    modalRef.current.close();
+                    bookingRefetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Decorator has been assigned!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
 
     if (isLoading) {
         return <Loading></Loading>
@@ -121,7 +145,7 @@ const AssignDecorator = () => {
                                 {/* row 1 */}
 
                                 {
-                                    pendingBookings.map((booking, index) => <tr key={index}>
+                                    pendingBookings.map((booking, index) => <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f3f4f6' : 'transparent' }}>
                                         <th>{index + 1}</th>
                                         <td>{booking.serviceName}</td>
                                         <td>{booking.servicePrice}</td>
@@ -138,7 +162,7 @@ const AssignDecorator = () => {
                                                 <button onClick={() => openAssignDecoratorModal(booking)} className='btn btn-outline border-green-700 text-green-700 rounded-4xl text'>Assign Decorator</button>
                                                 <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
                                             </div>
-                                            
+
                                         </td>
                                     </tr>)
                                 }
@@ -154,9 +178,34 @@ const AssignDecorator = () => {
                 {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
                 <dialog id="my_modal_5" ref={modalRef} className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box rounded-2xl bg-[#ffefdc]">
-                        <h3 className="font-bold text-lg text-secondary">Offer the best the price to seller!</h3>
+                        <h3 className="font-bold text-lg text-secondary">Available Decorators</h3>
 
-                        {availableDecorators.length}
+                        <table className="table text-xs md:text-xs">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Experties</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="[&>tr:nth-child(n+2)]:bg-gray-100">
+                                {/* row 1 */}
+
+                                {
+                                    availableDecorators.map((decorator, index) => <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f3f4f6' : 'transparent' }}>
+                                        <th>{index + 1}</th>
+                                        <td>{decorator.name}</td>
+                                        <td>{decorator.experties}</td>
+                                        <td>
+                                            <button onClick={() => handleAssign(decorator)} className='btn btn-outline h-6 border-green-700 text-green-700 rounded-4xl text'>Assign</button>
+
+                                        </td>
+                                    </tr>)
+                                }
+                            </tbody>
+                        </table>
 
                         <div className="modal-action">
                             <form method="dialog">
