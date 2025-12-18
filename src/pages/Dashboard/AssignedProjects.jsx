@@ -17,8 +17,8 @@ const AssignedProjects = () => {
     const axiosSecure = useAxiosSecure();
 
     //tankstack for loading pending bookings
-    const { isLoading, data: assignedBookings = [], refetch: bookingRefetch } = useQuery({
-        queryKey: ['assignedBookings', user.email, 'assigned'],
+    const { isLoading, data: allAssignedBookings = [], refetch: bookingRefetch } = useQuery({
+        queryKey: ['allAssignedBookings', user.email, 'allAssigned'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/booking/decorator?decoratorEmail=${user.email}`);
             return res.data;
@@ -27,50 +27,6 @@ const AssignedProjects = () => {
 
     console.log(user.email)
 
-    //cancelling function
-    const handleDelete = (id, status) => {
-
-        // console.log(status)
-        if (status !== 'pending' && status !== 'planning phase') {
-            Swal.fire({
-                icon: "error",
-                title: "Can not cancel at this stage !",
-                text: "you can cancel only in planning stage or before",
-                footer: '<a href="#">Why do I have this issue?</a>'
-            });
-            return;
-        }
-
-        Swal.fire({                                                 //alert for confirmation
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Cancel it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                axiosSecure.delete(`/deletebooking/${id}`)      //calling delete api with axios
-                    .then(res => {
-                        console.log(res.data)
-
-                        if (res.data.deletedCount) {
-
-                            bookingRefetch();                          //refreshing data loading using tankstack
-
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your booking has been cancelled.",
-                                icon: "success"
-                            });
-                        }
-                    });
-
-            }
-        });
-    }
 
     //modal function
     const openAssignDecoratorModal = (booking) => {
@@ -145,7 +101,7 @@ const AssignedProjects = () => {
                                 {/* row 1 */}
 
                                 {
-                                    assignedBookings.map((booking, index) => <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f3f4f6' : 'transparent' }}>
+                                    allAssignedBookings.map((booking, index) => <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f3f4f6' : 'transparent' }}>
                                         <th>{index + 1}</th>
                                         <td>{booking.serviceName}</td>
                                         <td>{booking.servicePrice}</td>
@@ -160,7 +116,7 @@ const AssignedProjects = () => {
                                         <td>
                                             <div className='flex gap-1 justify-center'>
                                                 <button onClick={() => openAssignDecoratorModal(booking)} className='btn btn-outline border-green-700 text-green-700 rounded-4xl text'>View Details</button>
-                                                {/* <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button> */}
+                                                
                                             </div>
 
                                         </td>
