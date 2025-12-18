@@ -8,6 +8,10 @@ import { MdOutlineAssignmentReturn, MdOutlineMedicalServices, MdOutlinePayment, 
 import { GrUserWorker } from "react-icons/gr";
 import { LuUserCog } from "react-icons/lu";
 import useRole from '../../hooks/useRole';
+import './DashboardLayout.css'
+import { FaTasks } from "react-icons/fa";
+import { IoTodayOutline } from "react-icons/io5";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 const DashboardLayout = () => {
 
@@ -45,11 +49,11 @@ const DashboardLayout = () => {
 
                     {
                         user ?
-                            <div className="dropdown mr-1">
+                            <div className="dropdown pr-5">
                                 <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
-                                    <img src={user?.photoURL} alt="" className='h-[26px] rounded-4xl' />
+                                    <img src={user?.photoURL} alt="" className='h-[26px] w-[26px] rounded-4xl' />
                                     {/* <IoIosArrowDown /> */}
-                                    Profile
+                                    <span className="capitalize">{role}</span>
                                 </div>
                                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
@@ -83,19 +87,51 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
 
-                        <li>
-                            <NavLink to='/dashboard/my-bookings' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
-                                <LuBookmarkCheck />
-                                <span className="is-drawer-close:hidden">My Bookings</span>
-                            </NavLink>
-                        </li>
+                        {/* user related routes */}
+                        {
+                            role === 'user' && <>        
+                                <li>
+                                    <NavLink to='/dashboard/my-bookings' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
+                                        <LuBookmarkCheck />
+                                        <span className="is-drawer-close:hidden">My Bookings</span>
+                                    </NavLink>
+                                </li>
 
-                        <li>
-                            <NavLink to='/dashboard/payment-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
-                                <MdOutlinePayment />
-                                <span className="is-drawer-close:hidden">Payment History</span>
-                            </NavLink>
-                        </li>
+                                <li>
+                                    <NavLink to='/dashboard/payment-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+                                        <MdOutlinePayment />
+                                        <span className="is-drawer-close:hidden">Payment History</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
+
+                        {/* decorator related routes */}
+                        {
+                            role === 'decorator' && <>
+                                <li>
+                                    <NavLink to='/dashboard/assigned-projects' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Assigned Projects">
+                                        <FaTasks />
+                                        <span className="is-drawer-close:hidden">Assigned Projects</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/todays-schedule' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Today's Schedule">
+                                        <IoTodayOutline />
+                                        <span className="is-drawer-close:hidden">Today's Schedule</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/earning-summery' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Earning Summery">
+                                        <FaMoneyBillTrendUp />
+                                        <span className="is-drawer-close:hidden">Earning Summery</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
 
                         {/* admin related routes-------- */}
                         {
@@ -144,13 +180,13 @@ const DashboardLayout = () => {
                             </>
                         }
 
-                        
 
-                        
 
-                        
 
-                        
+
+
+
+
 
                         {/* List item */}
                         <li>

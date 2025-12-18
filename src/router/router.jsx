@@ -26,6 +26,10 @@ import AddService from "../pages/Dashboard/Services/AddService";
 import Categories from "../pages/Dashboard/Categories/Categories";
 import AddCategory from "../pages/Dashboard/Categories/AddCategory";
 import AssignDecorator from "../pages/Dashboard/AssignDecorator";
+import DecoratorRoute from "./DecoratorRoute/DecoratorRoute";
+import AssignedProjects from "../pages/Dashboard/AssignedProjects";
+import TodaySchedule from "../pages/Dashboard/TodaySchedule";
+import EarningSummery from "../pages/Dashboard/EarningSummery";
 
 export const router = createBrowserRouter([
     {
@@ -105,6 +109,21 @@ export const router = createBrowserRouter([
                 path: 'alldecorators',
                 Component: AllDecorators
             },
+            //decorator only routes
+            {
+                path: 'assigned-projects',
+                element: <DecoratorRoute> <AssignedProjects></AssignedProjects> </DecoratorRoute>
+            },
+            {
+                path: 'todays-schedule',
+                element: <DecoratorRoute> <TodaySchedule></TodaySchedule> </DecoratorRoute>
+            },
+            {
+                path: 'earning-summery',
+                element: <DecoratorRoute> <EarningSummery></EarningSummery> </DecoratorRoute>
+            },
+
+            //admin only routes
             {
                 path: 'users-management',
                 element: <AdminRoute> <UsersManagement></UsersManagement> </AdminRoute>
