@@ -30,6 +30,7 @@ import DecoratorRoute from "./DecoratorRoute/DecoratorRoute";
 import AssignedProjects from "../pages/Dashboard/AssignedProjects";
 import TodaySchedule from "../pages/Dashboard/TodaySchedule";
 import EarningSummery from "../pages/Dashboard/EarningSummery";
+import MyProfile from "../pages/Dashboard/MyProfile";
 
 export const router = createBrowserRouter([
     {
@@ -106,8 +107,8 @@ export const router = createBrowserRouter([
                 Component: PaymentCancelled
             },
             {
-                path: 'alldecorators',
-                Component: AllDecorators
+                path: 'my-profile',
+                Component: MyProfile
             },
             //decorator only routes
             {
@@ -124,6 +125,10 @@ export const router = createBrowserRouter([
             },
 
             //admin only routes
+            {
+                path: 'alldecorators',
+                element: <AdminRoute> <AllDecorators></AllDecorators></AdminRoute>
+            },
             {
                 path: 'users-management',
                 element: <AdminRoute> <UsersManagement></UsersManagement> </AdminRoute>

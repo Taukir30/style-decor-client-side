@@ -35,6 +35,8 @@ const DecoratorDash = () => {
         0
     );
 
+    const decoratorEarning = totalEarning * 0.6;
+
     const totalProjects = completedBookings.length;
 
     // console.log(runnignProject)
@@ -50,7 +52,7 @@ const DecoratorDash = () => {
 
             <div className='p-5 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-5'>
                 <Widget title={'Total Completed Projects'} data={totalProjects} color={'orange'}></Widget>
-                <Widget title={'Total Earnings'} data={totalEarning} color={'blue'}></Widget>
+                <Widget title={'Total Earnings'} data={decoratorEarning} color={'blue'}></Widget>
                 <Widget title={'Current Project'} data={ assignedBookings.length > 0? assignedBookings[0]?.serviceName: 'No running project'} color={'violet'}></Widget>
             </div>
 

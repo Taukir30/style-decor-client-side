@@ -2,7 +2,7 @@ import React from 'react';
 
 const Widget = ({ title, data, color }) => {
     return (
-        <div className={`p-3 
+        <div className={`py-3 px-6 
                 ${color === 'blue' && 'bg-blue-100 border-blue-300'} 
                 ${color === 'red' && 'bg-red-100 border-red-300'} 
                 ${color === 'green' && 'bg-green-100 border-green-300'} 

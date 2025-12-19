@@ -14,7 +14,7 @@ const EarningSummery = () => {
     const axiosSecure = useAxiosSecure();
 
     //tankstack for loading pending bookings
-    const { isLoading, data: completedBookings = [], refetch } = useQuery({
+    const { isLoading, data: completedBookings = [] } = useQuery({
         queryKey: ['assignedBookings', user.email, 'assigned'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/booking/decorator?decoratorEmail=${user.email}&status=completed`);
@@ -73,6 +73,8 @@ const EarningSummery = () => {
         0
     );
 
+    const decoratorEarning = totalEarning * 0.6;
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -91,7 +93,8 @@ const EarningSummery = () => {
                                 <tr>
                                     <th></th>
                                     <th>Service Name</th>
-                                    <th>Earning</th>
+                                    <th>Cost</th>
+                                    <th>Earning (60%)</th>
                                     <th className='hidden md:table-cell'>Payment Status</th>
                                     <th className='hidden md:table-cell'>Date</th>
                                     <th>Status</th>
@@ -107,6 +110,7 @@ const EarningSummery = () => {
                                         <th>{index + 1}</th>
                                         <td>{booking.serviceName}</td>
                                         <td>{booking.servicePrice}</td>
+                                        <td>{booking.servicePrice * 0.6}</td>
                                         <td className='hidden md:table-cell capitalize'>{booking.paymentStatus}</td>
                                         <td className='hidden md:table-cell'>{new Date(booking.updatedAt).toLocaleDateString()}</td>
                                         <td>
@@ -127,8 +131,8 @@ const EarningSummery = () => {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colSpan={2} className='text-secondary text-center'>Total Earning</th>
-                                    <td className='text-secondary'>{totalEarning} BDT</td>
+                                    <th colSpan={3} className='text-secondary text-center'>Total Earning</th>
+                                    <td className='text-secondary'>{decoratorEarning} BDT</td>
                                     <td colSpan={4}></td>
                                 </tr>
                             </tfoot>

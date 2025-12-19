@@ -12,6 +12,7 @@ import './DashboardLayout.css'
 import { FaTasks } from "react-icons/fa";
 import { IoTodayOutline } from "react-icons/io5";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { ImProfile } from "react-icons/im";
 
 const DashboardLayout = () => {
 
@@ -49,7 +50,7 @@ const DashboardLayout = () => {
 
                     {
                         user ?
-                            <div className="dropdown pr-5">
+                            <div className="dropdown pr-1 md:pr-2">
                                 <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
                                     <img src={user?.photoURL} alt="" className='h-[26px] w-[26px] rounded-4xl' />
                                     {/* <IoIosArrowDown /> */}
@@ -90,6 +91,13 @@ const DashboardLayout = () => {
                         {/* user related routes */}
                         {
                             role === 'user' && <>        
+                                <li>
+                                    <NavLink to='/dashboard/my-profile' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
+                                        <ImProfile />
+                                        <span className="is-drawer-close:hidden">My Profile</span>
+                                    </NavLink>
+                                </li>
+
                                 <li>
                                     <NavLink to='/dashboard/my-bookings' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
                                         <LuBookmarkCheck />

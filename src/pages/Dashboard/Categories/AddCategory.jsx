@@ -9,7 +9,7 @@ const AddCategory = () => {
 
     const axios = useAxios();
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const handleAddCategory = (data) => {
 
