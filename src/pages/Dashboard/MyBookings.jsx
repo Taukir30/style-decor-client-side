@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loading from '../../components/Loading/Loading';
 import { useQuery } from '@tanstack/react-query';
@@ -6,13 +6,23 @@ import useAuth from '../../hooks/useAuth';
 import MyContainer from '../../components/MyContainer/MyContainer';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
+import useAxios from '../../hooks/useAxios';
 
 const MyBookings = () => {
 
+    const [selectedBooking, setSelectedBooking] = useState(null);
+
     const { user } = useAuth();
 
-    const axiosSecure = useAxiosSecure();
+    const modalRef = useRef(null);
 
+    const { register, handleSubmit, setValue } = useForm();
+
+    const axiosSecure = useAxiosSecure();
+    const axios = useAxios();
+
+    //loading all booking data
     const { isLoading, data: myBookings = [], refetch } = useQuery({
         queryKey: ['mybookings', user.email],
         queryFn: async () => {
@@ -27,7 +37,7 @@ const MyBookings = () => {
     const handleDelete = (id, status) => {
 
         console.log(status)
-        if ( status !== 'pending' && status !== 'planning phase' ) {
+        if (status !== 'pending' && status !== 'planning phase') {
             Swal.fire({
                 icon: "error",
                 title: "Can not cancel at this stage !",
@@ -66,6 +76,99 @@ const MyBookings = () => {
 
             }
         });
+    }
+
+    //tanstack for loading location
+    const { data: coverageAreas = [] } = useQuery({
+        queryKey: ['coverageAreas'],
+        queryFn: async () => {
+            const res = await axios.get('/coverage');
+            return res.data;
+        }
+    })
+
+    const locations = coverageAreas.map(c => c.districtName);                    //taking only the region property from the whole object
+
+
+    //modal function
+    const openEditModal = (booking) => {
+        setSelectedBooking(booking);
+        // console.log(booking)
+        modalRef.current.showModal();
+    }
+
+    //tanckstack for selected booking
+    const { isLoading: selectedLoading, data: booking = [] } = useQuery({
+        queryKey: ['booking', selectedBooking?._id],
+        enabled: !!selectedBooking?._id,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/booking/${selectedBooking._id}`);
+            return res.data;
+        }
+    })
+
+    console.log(booking)
+
+    //setting default data in modal form
+    useEffect(() => {
+        if (booking) {
+            setValue('address', booking.address);
+            setValue('location', booking.location);
+            setValue('area', booking.area);
+
+            // You can even handle the date here like we discussed before
+            setValue('scheduleDate', booking.scheduleDate);
+        }
+    }, [booking, setValue]);
+
+
+    //updatting function
+    const handleUpdate = data => {
+
+        let price = 0;
+
+        const area = parseInt(data.area);
+        // const finalData = { ...data, created_at: new Date().toISOString(), serviceId: serviceDetails._id, status: 'pending' };
+
+
+        if (booking.unit === 'sqr-ft') {
+            price = area * booking.pricePerUnit;
+        } else {
+            price = booking.pricePerUnit;
+        }
+
+        const updateData = {
+
+            location: data.location,
+            address: data.address,
+            servicePrice: price,
+            serviceId: booking.serviceId,
+            scheduleDate: data.scheduleDate,
+            unit: booking.unit,
+            pricePerUnit: booking.pricePerUnit
+        }
+
+        if (booking.unit === 'sqr-ft') {
+            updateData.area = area;
+        }
+
+        console.log(updateData)
+
+        axios.patch(`/booking/${booking._id}/update`, updateData)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    refetch();
+                    modalRef.current.close();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Booking updated!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+
     }
 
     if (isLoading) {
@@ -118,10 +221,10 @@ const MyBookings = () => {
                                             }
                                         </td>
                                         <td>
-                                            <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
-                                            {
-                                                // booking.status === 'pending' && <button onClick={()=>handleDelete(booking._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
-                                            }
+                                            <div className='flex gap-1'>
+                                                <button onClick={() => openEditModal(booking)} className='btn btn-outline border-green-500 text-green-500 rounded-4xl text'>Edit</button>
+                                                <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
+                                            </div>
                                         </td>
                                     </tr>)
                                 }
@@ -130,6 +233,70 @@ const MyBookings = () => {
                     </div>
 
                 </div>
+
+                {/* modal */}
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                {/* <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button> */}
+                <dialog id="my_modal_5" ref={modalRef} className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box rounded-2xl bg-[#ffefdc]">
+                        <h3 className="font-bold text-lg text-secondary">Update booking data</h3>
+
+                        {/* <span className={`loading loading-bars loading-xl ${selectedLoading? 'block' : 'hidden'} `}></span> */}
+
+                        <form onSubmit={handleSubmit(handleUpdate)} className='w-full'>
+                            <fieldset className="fieldset">
+                                {/* name */}
+                                <label className="label text-secondary">Name</label>
+                                <input type="text" className="input w-full rounded-4xl" value={booking?.name} readOnly />
+                                {/* email */}
+                                <label className="label text-secondary">Email</label>
+                                <input type="email" className="input w-full rounded-4xl" value={booking?.email} readOnly />
+
+
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend text-secondary">Location</legend>
+                                    <select {...register('location')} defaultValue={booking.location} className="select w-full rounded-4xl">
+
+                                        <option disabled={true} value={"Pick a Region"}>Pick a region</option>
+                                        {
+                                            locations.map((r, k) => <option key={k} value={r} >{r}</option>)
+                                        }
+
+                                    </select>
+                                </fieldset>
+
+                                {/* Address */}
+                                <label className="label text-secondary">Address</label>
+                                <input type="text" {...register('address')} defaultValue={booking?.address} className="input w-full rounded-4xl" />
+
+                                {/*Service name */}
+                                <label className="label text-secondary">Service Name</label>
+                                <input type="text" className="input w-full rounded-4xl" value={booking?.serviceName} readOnly />
+
+                                {
+                                    booking.unit === 'sqr-ft' &&
+                                    <div className=''>
+                                        <label className="label text-secondary">Area in sqr-ft</label>
+                                        <input type="text" {...register('area')} defaultValue={booking?.area} className="input w-full rounded-4xl" />
+                                    </div>
+                                }
+
+                                {/*schedule */}
+                                <label className="label text-secondary">Date</label>
+                                <input type="date" {...register('scheduleDate')} className="input w-full rounded-4xl" />
+
+                                <button className="btn btn-primary text-base text-secondary font-bold shadow-none rounded-4xl w-full mt-3">Confirm Booking</button>
+                            </fieldset>
+                        </form>
+
+                        <div className="modal-action">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="flex btn btn-outline btn-secondary rounded-4xl h-[35px]">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
             </MyContainer>
         </div>
     );

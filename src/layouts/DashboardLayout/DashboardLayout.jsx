@@ -92,7 +92,7 @@ const DashboardLayout = () => {
                         {
                             role === 'user' && <>        
                                 <li>
-                                    <NavLink to='/dashboard/my-profile' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Bookings">
+                                    <NavLink to='/dashboard/my-profile' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Profile">
                                         <ImProfile />
                                         <span className="is-drawer-close:hidden">My Profile</span>
                                     </NavLink>

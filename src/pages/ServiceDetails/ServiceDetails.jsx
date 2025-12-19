@@ -48,7 +48,7 @@ const ServiceDetails = () => {
 
     const locations = coverageAreas.map(c => c.districtName);                    //taking only the region property from the whole object
 
-    // console.log(serviceDetails)
+    console.log(serviceDetails)
 
     //modal function
     const handleBidModal = () => {
@@ -87,7 +87,13 @@ const ServiceDetails = () => {
             serviceId: serviceDetails._id,
             status: 'pending',
             paymentStatus: 'unpaid',
-            scheduleDate: data.scheduleDate
+            scheduleDate: data.scheduleDate,
+            unit: serviceDetails.unit,
+            pricePerUnit: data.pricePerUnit
+        }
+
+        if( serviceDetails.unit === 'sqr-ft' ){
+            finalData.area = area;
         }
         
         console.log(finalData);
