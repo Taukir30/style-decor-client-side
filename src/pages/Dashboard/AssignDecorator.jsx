@@ -3,7 +3,7 @@ import MyContainer from '../../components/MyContainer/MyContainer';
 import { Link } from 'react-router';
 import Loading from '../../components/Loading/Loading';
 import Swal from 'sweetalert2';
-import useAuth from '../../hooks/useAuth';
+
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
@@ -12,8 +12,6 @@ const AssignDecorator = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
 
     const modalRef = useRef(null);
-
-    const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure();
 
@@ -76,7 +74,17 @@ const AssignDecorator = () => {
     //modal function
     const openAssignDecoratorModal = (booking) => {
         setSelectedBooking(booking);
-        // console.log(booking)
+        console.log(booking)
+        if (booking.paymentStatus === "unpaid") {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Custormer has not paid yet!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
         modalRef.current.showModal();
     }
     // console.log(selectedBooking)
@@ -136,7 +144,8 @@ const AssignDecorator = () => {
                                     <th>Cost</th>
                                     <th className='hidden md:table-cell'>Location</th>
                                     <th className='hidden md:table-cell'>Date</th>
-                                    <th>Status</th>
+                                    
+                                    <th>Payment Status</th>
 
                                     <th>Action</th>
                                 </tr>
@@ -152,15 +161,16 @@ const AssignDecorator = () => {
                                         <td className='hidden md:table-cell'>{booking.location}</td>
                                         <td className='hidden md:table-cell'>{booking.scheduleDate}</td>
                                         <td>
-                                            <span className={`overflow-hidden ${booking.status === 'completed' ? 'text-green-700' : 'text-orange-700'} px-3 py-2 rounded-2xl`}>
-                                                {booking.status}
+                                            <span className={`overflow-hidden ${booking.paymentStatus === 'paid' ? 'text-green-700' : 'text-orange-700'} px-3 py-2 rounded-2xl`}>
+                                                {booking.paymentStatus}
                                             </span>
                                         </td>
+                                        
 
                                         <td>
                                             <div className='flex gap-1'>
-                                                <button onClick={() => openAssignDecoratorModal(booking)} className='btn btn-outline border-green-700 text-green-700 rounded-4xl text'>Assign Decorator</button>
-                                                <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
+                                                <button onClick={() => openAssignDecoratorModal(booking)} className='btn btn-outline border-green-700 text-green-700 rounded-4xl text-xs p-2 h-8'>Assign Decorator</button>
+                                                <button onClick={() => handleDelete(booking._id, booking.status)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text-xs p-2 h-8'>Cancel</button>
                                             </div>
 
                                         </td>

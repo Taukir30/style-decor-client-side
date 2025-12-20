@@ -15,7 +15,7 @@ const AddService = () => {
 
     const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
 
-    //tanstack for loading location
+    //tanstack for loading categories
     const { data: allCategory = [] } = useQuery({
         queryKey: ['allCategory'],
         queryFn: async () => {
@@ -28,7 +28,7 @@ const AddService = () => {
 
     // console.log(locations)
 
-    const handleAddCoverage = (data) => {
+    const handleAddService = (data) => {
 
         const serviceImg = data.photo[0];                      //getting image from the form
 
@@ -52,7 +52,7 @@ const AddService = () => {
                     imageURL: photoURL,
                     rating: 4.8,
                     isPopular: false,
-                    photoURL: photoURL,
+                    // photoURL: photoURL,
                     createdByEmail: user.email,
                     created_at: new Date().toISOString()
                 }
@@ -85,7 +85,7 @@ const AddService = () => {
 
                     <div className="overflow-x-auto px-8 pb-5 shadow rounded-box border border-base-content/5 bg-base-100">
 
-                        <form onSubmit={handleSubmit(handleAddCoverage)}>
+                        <form onSubmit={handleSubmit(handleAddService)}>
 
                             <div className='flex flex-col md:flex-row my-5 gap-5'>
 
