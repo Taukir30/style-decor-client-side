@@ -203,7 +203,7 @@ const AllDecorators = () => {
                                         <td>{decorator.experties}</td>
                                         <td className='hidden md:table-cell'>{decorator.location}</td>
                                         <td className='hidden md:table-cell'>{new Date(decorator.createdAt).toLocaleDateString()}{" "}</td>
-                                        <td>{decorator.workStatus}</td>
+                                        <td className='capitalize'>{decorator.workStatus?.replace(/_/g, ' ')}</td>
 
                                         <td>
                                             {

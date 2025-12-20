@@ -13,6 +13,7 @@ import { FaTasks } from "react-icons/fa";
 import { IoTodayOutline } from "react-icons/io5";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { ImProfile } from "react-icons/im";
+import logoImg from '../../assets/sdlogoo.png';
 
 const DashboardLayout = () => {
 
@@ -58,7 +59,7 @@ const DashboardLayout = () => {
                                 </div>
                                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
-                                    
+
                                     {
                                         role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
                                     }
@@ -84,7 +85,17 @@ const DashboardLayout = () => {
                     <ul className="menu w-full grow gap-1">
                         {/* List item */}
                         <li>
-                            <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                            <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="StyleDecor">
+                                {/* Home icon */}
+                                <img src={logoImg} className='h-5' alt="" />
+                                <span className="is-drawer-close:hidden">
+                                    <span className='text-xl font-bold text-[#CA5310]'>Style</span>
+                                    <span className='text-xl font-bold text-[#8F250C]'>Decor</span>
+                                </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                 {/* Home icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                                 <span className="is-drawer-close:hidden">Homepage</span>
@@ -93,7 +104,7 @@ const DashboardLayout = () => {
 
                         {/* user related routes */}
                         {
-                            role === 'user' && <>        
+                            role === 'user' && <>
                                 <li>
                                     <NavLink to='/dashboard/my-profile' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Profile">
                                         <ImProfile />
@@ -191,22 +202,6 @@ const DashboardLayout = () => {
                             </>
                         }
 
-
-
-
-
-
-
-
-
-                        {/* List item */}
-                        <li>
-                            <Link className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                {/* Settings icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                                <span className="is-drawer-close:hidden">Settings</span>
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>
