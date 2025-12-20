@@ -65,11 +65,11 @@ const Categories = () => {
         <div className='py-5'>
             <MyContainer>
                 <div className='flex flex-col gap-3'>
-                    <h1 className='text-2xl text-secondary'>Category List</h1>
+                    <h1 className='text-2xl text-secondary'>Category Management</h1>
                     <Link to='/dashboard/add-Category' className="btn btn-outline btn-secondary w-45 text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Add Category</Link>
 
                     <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100 my-3">
-                        <table className="table text-xs md:text-base">
+                        <table className="table text-xs md:text-base [&>tbody>tr:nth-child(even)]:bg-blue-50">
                             {/* head */}
                             <thead>
                                 <tr>

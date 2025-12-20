@@ -50,7 +50,7 @@ const DashboardLayout = () => {
 
                     {
                         user ?
-                            <div className="dropdown pr-1 md:pr-2">
+                            <div className="dropdown pr-1 md:pr-5">
                                 <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
                                     <img src={user?.photoURL} alt="" className='h-[26px] w-[26px] rounded-4xl' />
                                     {/* <IoIosArrowDown /> */}
@@ -58,7 +58,10 @@ const DashboardLayout = () => {
                                 </div>
                                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
-                                    <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                    
+                                    {
+                                        role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                    }
                                     <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li>
                                         <button onClick={handleLogout} className=''>Log out</button>
@@ -152,9 +155,9 @@ const DashboardLayout = () => {
                                 </li>
 
                                 <li>
-                                    <NavLink to='/dashboard/alldecorators' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Decorators">
+                                    <NavLink to='/dashboard/alldecorators' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Decorators Management">
                                         <GrUserWorker />
-                                        <span className="is-drawer-close:hidden">Decorators</span>
+                                        <span className="is-drawer-close:hidden">Decorator Management</span>
                                     </NavLink>
                                 </li>
 
@@ -168,14 +171,14 @@ const DashboardLayout = () => {
                                 <li>
                                     <NavLink to='/dashboard/services-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Package Management">
                                         <MdOutlineMedicalServices />
-                                        <span className="is-drawer-close:hidden">Services Package Management</span>
+                                        <span className="is-drawer-close:hidden">Service Packages</span>
                                     </NavLink>
                                 </li>
 
                                 <li>
                                     <NavLink to='/dashboard/all-category' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Category Management">
                                         <MdOutlinePlaylistAdd />
-                                        <span className="is-drawer-close:hidden">Category Management</span>
+                                        <span className="is-drawer-close:hidden">Categories</span>
                                     </NavLink>
                                 </li>
 

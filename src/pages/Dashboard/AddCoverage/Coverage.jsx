@@ -32,7 +32,7 @@ const Coverage = () => {
                     <Link to='/dashboard/add-coverage' className="btn btn-outline btn-secondary w-45 text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Add Coverage Area</Link>
 
                     <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100">
-                        <table className="table">
+                        <table className="table [&>tbody>tr:nth-child(even)]:bg-blue-50">
                             {/* head */}
                             <thead>
                                 <tr>

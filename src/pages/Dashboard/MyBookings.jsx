@@ -115,8 +115,6 @@ const MyBookings = () => {
             setValue('address', booking.address);
             setValue('location', booking.location);
             setValue('area', booking.area);
-
-            // You can even handle the date here like we discussed before
             setValue('scheduleDate', booking.scheduleDate);
         }
     }, [booking, setValue]);

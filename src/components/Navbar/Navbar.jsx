@@ -4,12 +4,15 @@ import Logo from '../Logo/Logo';
 import LogoMini from '../Logo/LogoMini';
 import useAuth from '../../hooks/useAuth';
 import { IoIosArrowDown } from 'react-icons/io';
+import useRole from '../../hooks/useRole';
 
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
 
-    // console.log(user)
+    const {role} = useRole();
+
+    // console.log(role)
 
     const handleLogout = () => {
         logOut()
@@ -78,7 +81,10 @@ const Navbar = () => {
                                 </div>
                                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
-                                    <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                    {
+                                        role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                    }
+                                    
                                     <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li>
                                         <button onClick={handleLogout} className=''>Log out</button>

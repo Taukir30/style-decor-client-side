@@ -31,6 +31,7 @@ import AssignedProjects from "../pages/Dashboard/AssignedProjects";
 import TodaySchedule from "../pages/Dashboard/TodaySchedule";
 import EarningSummery from "../pages/Dashboard/EarningSummery";
 import MyProfile from "../pages/Dashboard/MyProfile";
+import UserRoute from "./UserRoute/UserRoute";
 
 export const router = createBrowserRouter([
     {
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-bookings',
-                Component: MyBookings
+                element: <UserRoute> <MyBookings></MyBookings> </UserRoute>
             },
             {
                 path: 'payment-history',
@@ -108,7 +109,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-profile',
-                Component: MyProfile
+                element: <UserRoute> <MyProfile></MyProfile> </UserRoute>
             },
             //decorator only routes
             {

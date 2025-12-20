@@ -123,11 +123,11 @@ const UsersManagement = () => {
         <div className='py-5'>
             <MyContainer>
                 <div className='flex flex-col gap-3'>
-                    <h1 className='text-2xl text-secondary'>Users List</h1>
+                    <h1 className='text-2xl text-secondary'>User Management</h1>
 
 
                     <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100">
-                        <table className="table text-xs md:text-base">
+                        <table className="table text-xs md:text-base [&>tbody>tr:nth-child(even)]:bg-blue-50">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -168,12 +168,15 @@ const UsersManagement = () => {
                                         <td>
                                             {
                                                 dbUser.role !== 'admin' ?
-                                                    <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-success text-xs text-green-950 rounded-4xl '>Make Admin</button> :
-                                                    <button onClick={() => handleRemoveAdmin(dbUser)} disabled={user.email === dbUser.email} className='btn btn-danger text-xs text-green-950 rounded-4xl '>Remove Admin</button>
+                                                    <div className='flex gap-1'>
+                                                        <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-success text-green-950 rounded-4xl text-xs p-2 h-8'>Make Admin</button> 
+                                                        <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-primary text-green-950 rounded-4xl text-xs p-2 h-8'>Make Decorator</button> 
+                                                    </div>:
+                                                    <button onClick={() => handleRemoveAdmin(dbUser)} disabled={user.email === dbUser.email} className='btn btn-danger  text-xs p-2 h-8 text-green-950 rounded-4xl '>Remove Admin</button>
                                             }
                                         </td>
                                         <td>
-                                            <button onClick={() => handleDelete(dbUser._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>{dbUser.status === 'pending' ? 'Reject' : 'Remove'}</button>
+                                            <button onClick={() => handleDelete(dbUser._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text-xs p-2 h-8'>{dbUser.status === 'pending' ? 'Reject' : 'Remove'}</button>
                                             {
                                                 // booking.status === 'pending' && <button onClick={()=>handleDelete(booking._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text'>Cancel</button>
                                             }
