@@ -27,13 +27,8 @@ const Navbar = () => {
     const item = <>
         <li><NavLink to='/allservices'>Services</NavLink></li>
         <li><NavLink to='/coverage'>Coverage</NavLink></li>
-        <li><NavLink to='/pricing'>Pricing</NavLink></li>
-        <li><NavLink to='/send-parcel'>Send Parcel</NavLink></li>
-        {
-            user && <>
-                        <li><NavLink to='/dashboard/my-bookings'>My Bookings</NavLink></li>
-                    </>
-        }
+        <li><NavLink to='/coverage'>About</NavLink></li>
+        <li><NavLink to='/coverage'>Contact</NavLink></li>
     </>
 
     return (

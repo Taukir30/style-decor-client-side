@@ -7,7 +7,7 @@ import { motion } from "motion/react"
 
 const Hero = () => {
     return (
-        <div className="h-[660px] md:h-[630px] bg-cover bg-center"  style={{ backgroundImage: `linear-gradient(to top, rgba(255, 239, 220,0.7), rgba(255, 239, 220, 1)), url(${heroImg})`}}  >
+        <div className="h-[660px] md:h-[630px] bg-cover bg-center mb-10"  style={{ backgroundImage: `linear-gradient(to top, rgba(255, 239, 220,0.7), rgba(255, 239, 220, 1)), url(${heroImg})`}}  >
 
             <MyContainer>
                 <div className='h-[630px] flex flex-col-reverse md:flex-row justify-between items-center gap-5 px-2 md:px-20'>
