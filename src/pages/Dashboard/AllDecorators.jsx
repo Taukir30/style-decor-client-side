@@ -55,6 +55,7 @@ const AllDecorators = () => {
             setValue('location', selectedDecorator.location);
             setValue('experties', selectedDecorator.experties);
             setValue('experience', selectedDecorator.experience);
+            setValue('rating', selectedDecorator.rating);
         }
     }, [selectedDecorator, setValue]);
 
@@ -67,7 +68,8 @@ const AllDecorators = () => {
             location: data.location,
             address: data.address,
             experties: data.experties,
-            experience: data.experience
+            experience: data.experience,
+            rating: data.rating
         }
 
         // console.log(updateData)
@@ -272,15 +274,19 @@ const AllDecorators = () => {
                                 <label className="label text-secondary">Address</label>
                                 <input type="text" {...register('address')} defaultValue={selectedDecorator?.address} className="input w-full rounded-4xl" />
 
-                                {/*Service name */}
+                                {/*Experties */}
                                 <label className="label text-secondary">Experties</label>
                                 <input type="text" {...register('experties')} className="input w-full rounded-4xl" />
 
 
 
-                                {/*schedule */}
+                                {/*Experience */}
                                 <label className="label text-secondary">Experience</label>
                                 <input type="text" {...register('experience')} className="input w-full rounded-4xl" />
+                                
+                                {/*Rating */}
+                                <label className="label text-secondary">Rating</label>
+                                <input type="text" {...register('rating')} className="input w-full rounded-4xl" />
 
                                 <button className="btn btn-primary text-base text-secondary font-bold shadow-none rounded-4xl w-full mt-3">Confirm Update</button>
                             </fieldset>

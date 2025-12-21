@@ -27,7 +27,7 @@ const AllServices = () => {
     return (
         <div className='py-10'>
             <MyContainer>
-                <h2 className='text-center my-10 text-4xl text-secondary'>Popular Services</h2>
+                <h2 className='text-center my-10 text-4xl text-secondary'>All Service Packages</h2>
 
                 <ServiceCardHolder services={allServices}></ServiceCardHolder>
 

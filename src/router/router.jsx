@@ -32,6 +32,7 @@ import TodaySchedule from "../pages/Dashboard/TodaySchedule";
 import EarningSummery from "../pages/Dashboard/EarningSummery";
 import MyProfile from "../pages/Dashboard/MyProfile";
 import UserRoute from "./UserRoute/UserRoute";
+import PaymentReceipt from "../pages/Dashboard/Payment/PaymentReceipt";
 
 export const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
             {
                 path: 'payment-cancelled',
                 Component: PaymentCancelled
+            },
+            {
+                path: 'payment-receipt/:id',
+                Component: PaymentReceipt
             },
             {
                 path: 'my-profile',

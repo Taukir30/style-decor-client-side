@@ -42,6 +42,7 @@ const PaymentHistory = () => {
                                     <th>Amount</th>
                                     <th>Paid at</th>
                                     <th>Transaction ID</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,6 +60,9 @@ const PaymentHistory = () => {
                                             })}
                                         </td>
                                         <td>{record.transactionId}</td>
+                                        <td>
+                                            <Link to={`/dashboard/payment-receipt/${record._id}`} className='btn btn-primary text-green-950 rounded-4xl text-xs p-2 h-8'>View Receipt</Link>
+                                        </td>
                                     </tr>
 
                                     )

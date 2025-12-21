@@ -69,7 +69,7 @@ const Services = () => {
             cost: data.cost,
             unit: data.unit,
             service_category: data.category,
-            description: data.descripotion,
+            description: data.description,
             isPopular: data.isPopular
         }
 
@@ -78,6 +78,7 @@ const Services = () => {
         axiosSecure.patch(`/services/${selectedService._id}`, updateData)
             .then(res => {
                 if (res.data.modifiedCount) {
+                    console.log(res.data)
                     refetch();
                     modalRef.current.close();
                     Swal.fire({

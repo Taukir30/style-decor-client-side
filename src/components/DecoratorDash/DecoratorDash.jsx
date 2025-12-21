@@ -35,7 +35,7 @@ const DecoratorDash = () => {
         0
     );
 
-    const decoratorEarning = totalEarning * 0.6;
+    const decoratorEarning = totalEarning * 0.4;
 
     const totalProjects = completedBookings.length;
 

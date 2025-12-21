@@ -61,8 +61,8 @@ const AdminDash = () => {
 
                 <div className='p-5 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-5'>
                     <Widget title={'Total Revenue (BDT)'} data={bookingRevenueStats.totalRevenue} color={'orange'}></Widget>
-                <Widget title={'Operational Cost (BDT)'} data={operationalCost} color={'blue'}></Widget>
-                <Widget title={'Total Profit (BDT)'} data={totalProfit} color={'violet'}></Widget>
+                    <Widget title={'Operational Cost (BDT)'} data={operationalCost} color={'blue'}></Widget>
+                    <Widget title={'Total Profit (BDT)'} data={totalProfit} color={'violet'}></Widget>
                 </div>
 
 
@@ -79,7 +79,7 @@ const AdminDash = () => {
                 <div className='p-5'>
                     <div className="stats w-full stats-vertical lg:stats-horizontal border border-base-200">
                         {
-                            bookingStatusStats.map( (item, i) => <div key={i} className="stat">
+                            bookingStatusStats.map((item, i) => <div key={i} className="stat">
                                 <div className="stat-title text-primary text-base"> {item.name} </div>
                                 <div className="stat-value"> {item.count} </div>
                                 {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
