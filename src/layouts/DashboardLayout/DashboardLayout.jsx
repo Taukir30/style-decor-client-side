@@ -45,7 +45,7 @@ const DashboardLayout = () => {
                     <div className='hidden sm:block'>
                         <Logo></Logo>
                     </div>
-                    <div className='blocl sm:hidden'>
+                    <div className='block sm:hidden'>
                         <LogoMini></LogoMini>
                     </div>
 
@@ -82,12 +82,12 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
                     {/* Sidebar content here */}
-                    <ul className="menu w-full grow gap-1">
+                    <ul className="menu w-full grow gap-1 text-secondary">
                         {/* List item */}
                         <li>
                             <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="StyleDecor">
                                 {/* Home icon */}
-                                <img src={logoImg} className='h-5' alt="" />
+                                <img src={logoImg} className='h-5 border border-primary rounded-2xl' alt="" />
                                 <span className="is-drawer-close:hidden">
                                     <span className='text-xl font-bold text-[#CA5310]'>Style</span>
                                     <span className='text-xl font-bold text-[#8F250C]'>Decor</span>

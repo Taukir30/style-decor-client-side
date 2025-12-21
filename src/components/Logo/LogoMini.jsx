@@ -6,7 +6,7 @@ const LogoMini = () => {
     return (
         <Link to='/'>
             <div className='flex items-center gap-1'>
-                <img src={logoImg} className='h-[26px] ' alt="" />
+                <img src={logoImg} className='h-[26px] border border-primary rounded-2xl' alt="" />
             </div>
         </Link>
     );

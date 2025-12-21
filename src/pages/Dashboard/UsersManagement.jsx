@@ -165,10 +165,10 @@ const UsersManagement = () => {
                                         <td className='hidden md:table-cell'>{dbUser.email}</td>
                                         <td className='hidden md:table-cell'>{new Date(dbUser.createdAt).toLocaleDateString()}{" "}</td>
 
-                                        <td>
+                                        <td className='w-fit'>
                                             {
                                                 dbUser.role !== 'admin' ?
-                                                    <div className='flex gap-1'>
+                                                    <div className='flex gap-1 flex-wrap min-w-25'>
                                                         <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-success text-green-950 rounded-4xl text-xs p-2 h-8'>Make Admin</button> 
                                                         <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-primary text-green-950 rounded-4xl text-xs p-2 h-8'>Make Decorator</button> 
                                                     </div>:
