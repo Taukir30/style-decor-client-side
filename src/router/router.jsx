@@ -35,6 +35,7 @@ import UserRoute from "./UserRoute/UserRoute";
 import PaymentReceipt from "../pages/Dashboard/Payment/PaymentReceipt";
 import Map from "../pages/Map/Map";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import ContactUs from "../pages/AboutUs/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path: 'about-us',
                 Component: AboutUs
+            },
+            {
+                path: 'contact-us',
+                Component: ContactUs
             },
             {
                 path: '/beadecorator',

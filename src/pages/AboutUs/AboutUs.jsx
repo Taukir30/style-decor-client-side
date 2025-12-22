@@ -46,10 +46,6 @@ const AboutUs = () => {
                     }
                 </div>
 
-                {/* <div className='flex justify-center my-5 py-5'>
-                    <Link to='/allservices' className='btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]'>See All</Link>
-                </div> */}
-
             </div>
         </MyContainer>
     );
