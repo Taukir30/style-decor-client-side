@@ -24,6 +24,10 @@ body{
   min-height: 500px;
 }
 
+.navbar .navbar-center ul li a.active{
+  font-weight: bold;
+}
+
 
 
 

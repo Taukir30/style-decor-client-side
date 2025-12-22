@@ -21,7 +21,7 @@ const Hero = () => {
                     >
                         <h1 className='text-2xl lg:text-6xl/20 text-secondary tracking-wider font-light'>Elevate Your Events,<br /> Elevate Your Lifestyle.</h1>
                         <p className='text-base lg:text-2xl/8 w-full md:w-2/3'>Experience seamless booking for breathtaking ceremony decorations and cutting-edge smart home solutions.</p>
-                        <Link className='btn btn-primary text-base text-secondary font-bold shadow-none rounded-4xl w-60'>Book Decoration Service</Link>
+                        <Link to='/allservices' className='btn btn-primary text-base text-secondary font-bold shadow-none rounded-4xl w-60'>Book Decoration Service</Link>
                     </motion.div>
 
                     <motion.div 

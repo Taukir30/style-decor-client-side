@@ -33,6 +33,8 @@ import EarningSummery from "../pages/Dashboard/EarningSummery";
 import MyProfile from "../pages/Dashboard/MyProfile";
 import UserRoute from "./UserRoute/UserRoute";
 import PaymentReceipt from "../pages/Dashboard/Payment/PaymentReceipt";
+import Map from "../pages/Map/Map";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ export const router = createBrowserRouter([
             {
                 path: 'servicedetails/:id',
                 Component: ServiceDetails
+            },
+            {
+                path: 'coverage',
+                Component: Map
+            },
+            {
+                path: 'about-us',
+                Component: AboutUs
             },
             {
                 path: '/beadecorator',
