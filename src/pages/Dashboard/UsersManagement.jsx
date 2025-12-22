@@ -166,14 +166,19 @@ const UsersManagement = () => {
                                         <td className='hidden md:table-cell'>{new Date(dbUser.createdAt).toLocaleDateString()}{" "}</td>
 
                                         <td className='w-fit'>
-                                            {
-                                                dbUser.role !== 'admin' ?
-                                                    <div className='flex gap-1 flex-wrap min-w-25'>
-                                                        <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-success text-green-950 rounded-4xl text-xs p-2 h-8'>Make Admin</button> 
-                                                        <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-primary text-green-950 rounded-4xl text-xs p-2 h-8'>Make Decorator</button> 
-                                                    </div>:
-                                                    <button onClick={() => handleRemoveAdmin(dbUser)} disabled={user.email === dbUser.email} className='btn btn-danger  text-xs p-2 h-8 text-green-950 rounded-4xl '>Remove Admin</button>
-                                            }
+                                            <div className='flex flex-col gap-1'>
+                                                {
+                                                    dbUser.role !== 'admin' ?
+                                                        
+                                                            <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-success text-green-950 rounded-4xl text-xs p-2 h-8'>Make Admin</button> 
+                                                        :
+                                                        <button onClick={() => handleRemoveAdmin(dbUser)} disabled={user.email === dbUser.email} className='btn btn-danger  text-xs p-2 h-8 text-green-950 rounded-4xl '>Remove Admin</button>
+                                                }
+                                                {
+                                                    dbUser.role === 'user' &&
+                                                    <button onClick={() => handleMakeAdmin(dbUser)} className='btn btn-primary text-green-950 rounded-4xl text-xs p-2 h-8'>Make Decorator</button> 
+                                                }
+                                            </div>
                                         </td>
                                         <td>
                                             <button onClick={() => handleDelete(dbUser._id)} className='btn btn-outline border-red-500 text-red-500 rounded-4xl text-xs p-2 h-8'>{dbUser.status === 'pending' ? 'Reject' : 'Remove'}</button>

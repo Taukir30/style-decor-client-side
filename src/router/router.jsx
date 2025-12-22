@@ -96,14 +96,6 @@ export const router = createBrowserRouter([
                 Component: DashHome
             },
             {
-                path: 'coverage',
-                Component: Coverage
-            },
-            {
-                path: 'add-coverage',
-                Component: AddCoverage
-            },
-            {
                 path: 'my-bookings',
                 element: <UserRoute> <MyBookings></MyBookings> </UserRoute>
             },
@@ -146,6 +138,14 @@ export const router = createBrowserRouter([
             },
 
             //admin only routes
+            {
+                path: 'coverage',
+                element: <AdminRoute> <Coverage></Coverage> </AdminRoute>
+            },
+            {
+                path: 'add-coverage',
+                element: <AdminRoute> <AddCoverage></AddCoverage> </AdminRoute>
+            },
             {
                 path: 'alldecorators',
                 element: <AdminRoute> <AllDecorators></AllDecorators></AdminRoute>

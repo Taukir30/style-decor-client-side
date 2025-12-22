@@ -70,8 +70,7 @@ const Footer = () => {
                     <div className="md:text-right flex flex-col md:items-end">
                         <Logo></Logo>
                         <p className="text-gray-600 mb-6 text-sm max-w-xs">
-                            Creating memorable experiences and seamless events in London and
-                            beyond.
+                            Experience seamless booking for breathtaking ceremony decorations and cutting-edge smart home solutions.
                         </p>
                         <h3 className="text-base font-bold text-gray-900 mb-4 tracking-tight">
                             Follow Us
