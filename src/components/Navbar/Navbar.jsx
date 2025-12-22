@@ -33,7 +33,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-transparent pt-5 flex justify-center items-center sticky top-0 z-10'>
+        <div className='bg-transparent pt-3 flex justify-center items-center sticky top-0 z-10'>
             <div className="navbar w-[90%] bg-base-100 rounded-4xl px-3 min-h-[55px] h-[55px] z-20 border border-primary shadow-lg">
                 <div className="navbar-start">
                     <div className="dropdown">

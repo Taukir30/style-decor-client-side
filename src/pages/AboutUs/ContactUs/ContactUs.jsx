@@ -5,7 +5,7 @@ const ContactUs = () => {
     return (
         <div>
             <MyContainer>
-                <div className='my-5 flex flex-col items-center gap-5 px-20'>
+                <div className='mt-5 mb-20 flex flex-col items-center gap-5 px-20'>
                     <h1 className='text-center my-10 text-4xl text-secondary'>Contact Us</h1>
 
                     <p className='text-base md:text-xl w-full text-center'>For any kind of queries, feel free to contact us.</p>

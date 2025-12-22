@@ -31,7 +31,7 @@ const Map = () => {
 
 
     return (
-        <div className='my-5 py-10 flex flex-col items-center gap-5  rounded-3xl'>
+        <div className='mt-5 mb-30 py-10 flex flex-col items-center gap-5  rounded-3xl'>
             <h1 className='text-center my-10 text-4xl text-secondary'>Our Service Area</h1>
 
 

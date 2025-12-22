@@ -27,7 +27,7 @@ const AboutUs = () => {
 
     return (
         <MyContainer>
-            <div className='my-5 flex flex-col gap-5 px-20'>
+            <div className='my-3 flex flex-col gap-5 px-20'>
                 <h1 className='text-center my-10 text-4xl text-secondary'>About Us</h1>
                 <h2 className='text-2xl text-secondary text-left font-bold py-5'>Bringing Your Vision to Life with Smart, Seamless Decoration Planning</h2>
 
@@ -36,7 +36,7 @@ const AboutUs = () => {
 
             </div>
 
-            <div className='pt-20 pb-25 px-20'>
+            <div className='mb-20 py-15 px-20'>
 
                 <h2 className='text-2xl text-secondary font-bold  my-10'>Our Team</h2>
 

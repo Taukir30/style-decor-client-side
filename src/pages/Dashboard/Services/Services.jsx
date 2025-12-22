@@ -7,10 +7,15 @@ import MyContainer from '../../../components/MyContainer/MyContainer';
 import { Link } from 'react-router';
 import { useForm } from 'react-hook-form';
 import useAxios from '../../../hooks/useAxios';
+import useAuth from '../../../hooks/useAuth';
 
 const Services = () => {
 
+    const {loading} = useAuth();
+
     const [selectedService, setSelectedService] = useState(null);
+
+    const [searchText, setSearchText] = useState('');
 
     const modalRef = useRef(null);
 
@@ -19,10 +24,11 @@ const Services = () => {
     const axiosSecure = useAxiosSecure();
     const axios = useAxios();
 
-    const { isLoading, data: allServices = [], refetch } = useQuery({
-        queryKey: ['allServices'],
+    //tankstack for loading all services
+    const { data: allServices = [], refetch } = useQuery({
+        queryKey: ['allServices', searchText],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/allservices`);
+            const res = await axiosSecure.get(`/allservices?searchText=${searchText}`);
             return res.data;
         }
     })
@@ -130,16 +136,29 @@ const Services = () => {
     }
 
 
-    if (isLoading) {
+    if (loading) {
         return <Loading></Loading>
     }
 
     return (
-        <div className='py-5'>
+        <div className='py-10'>
             <MyContainer>
                 <div className='flex flex-col gap-3'>
-                    <h1 className='text-2xl text-secondary'>Service Package Management</h1>
-                    <Link to='/dashboard/add-service' className="btn btn-outline btn-secondary w-45 text-secondary rounded-4xl h-[35px] hover:text-[#FBBA72]">Add Service Package</Link>
+                    <h1 className='text-2xl text-secondary text-center md:text-start'>Service Package Management</h1>
+
+                    <div className='flex justify-between items-center'>
+                        <Link to='/dashboard/add-service' className="btn btn-outline btn-secondary w-40 md:w-45 text-secondary text-xs md:text-sm rounded-4xl h-[35px] hover:text-[#FBBA72]">Add Service Package</Link>
+
+                        <label className="input rounded-4xl border border-secondary w-40 md:w-55">
+                            <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor" >
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.3-4.3"></path>
+                                </g>
+                            </svg>
+                            <input onChange={(e) => setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
+                        </label>
+                    </div>
 
                     <div className="overflow-x-auto shadow rounded-box border border-base-content/5 bg-base-100 my-3">
                         <table className="table text-xs md:text-base [&>tbody>tr:nth-child(even)]:bg-blue-50">
