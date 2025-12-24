@@ -21,18 +21,20 @@ const UserDash = () => {
     //     }
     // })
 
-    const { isLoading, data: allBooking = [] } = useQuery({
+    const { isLoading, data: allBookingsData = {} } = useQuery({
         queryKey: ['allBooking', user.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/booking/decorator?decoratorEmail=${user.email}&status=assigned`);
+            const res = await axiosSecure.get(`/allbookings/?email=${user.email}`);
             return res.data;
         }
     })
 
-    const totalProjects = allBooking.length;
+    const allBookings = allBookingsData.result
 
-    // console.log(runnignProject)
+    const totalProjects = allBookings?.length;
+
+    console.log(allBookings)
 
     if (loading || isLoading) {
         return <Loading></Loading>

@@ -4,7 +4,7 @@ import Logo from '../../components/Logo/Logo';
 import LogoMini from '../../components/Logo/LogoMini';
 import useAuth from '../../hooks/useAuth';
 import { LuBookmarkCheck, LuMapPin } from "react-icons/lu";
-import { MdOutlineAssignmentReturn, MdOutlineMedicalServices, MdOutlinePayment, MdOutlinePlaylistAdd } from "react-icons/md";
+import { MdHistory, MdOutlineAssignmentReturn, MdOutlineMedicalServices, MdOutlinePayment, MdOutlinePlaylistAdd } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { LuUserCog } from "react-icons/lu";
 import useRole from '../../hooks/useRole';
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
     }
 
     return (
-        <div className="drawer lg:drawer-open">
+        <div className="drawer lg:drawer-open min-h-screen">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Navbar */}
@@ -162,6 +162,13 @@ const DashboardLayout = () => {
                                     <NavLink to='/dashboard/assign-decorator' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Decorator">
                                         <MdOutlineAssignmentReturn />
                                         <span className="is-drawer-close:hidden">Assign Decorator</span>
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/dashboard/booking-history' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Booking History">
+                                        <MdHistory />
+                                        <span className="is-drawer-close:hidden">Booking History</span>
                                     </NavLink>
                                 </li>
 

@@ -19,6 +19,7 @@ const AllDecorators = () => {
     const axiosSecure = useAxiosSecure();
     const axios = useAxios();
 
+    //tankstack for loading decorator list
     const { isLoading, data: AllDecorators = [], refetch } = useQuery({
         queryKey: ['alldecorators'],
         queryFn: async () => {

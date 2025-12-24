@@ -16,13 +16,15 @@ const AssignDecorator = () => {
     const axiosSecure = useAxiosSecure();
 
     //tankstack for loading pending bookings
-    const { isLoading, data: pendingBookings = [], refetch: bookingRefetch } = useQuery({
+    const { isLoading, data: allBookingsData = {}, refetch: bookingRefetch } = useQuery({
         queryKey: ['pendingBookings'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allbookings?status=pending`);
             return res.data;
         }
     })
+
+    const pendingBookings = allBookingsData.result
 
     // console.log(pendingBookings)
 
@@ -201,6 +203,14 @@ const AssignDecorator = () => {
                                 </tr>
                             </thead>
                             <tbody className="[&>tr:nth-child(n+2)]:bg-gray-100">
+
+                                {/* loading spinner */}
+                                <tr className={` ${decoratorLoading === true ? 'table-row' : 'hidden'}`}> 
+                                    <td className='col-span-4 text-center'>
+                                        <Loading></Loading>
+                                    </td>
+                                </tr>
+
                                 {/* row 1 */}
 
                                 {

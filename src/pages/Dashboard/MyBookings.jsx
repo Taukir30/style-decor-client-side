@@ -23,13 +23,15 @@ const MyBookings = () => {
     const axios = useAxios();
 
     //loading all booking data
-    const { isLoading, data: myBookings = [], refetch } = useQuery({
+    const { isLoading, data: myBookingsData = {}, refetch } = useQuery({
         queryKey: ['mybookings', user.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/allbookings?email=${user.email}`);
             return res.data;
         }
     })
+
+    const myBookings = myBookingsData.result
 
     console.log(myBookings)
 

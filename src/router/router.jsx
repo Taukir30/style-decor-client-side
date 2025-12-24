@@ -36,6 +36,7 @@ import PaymentReceipt from "../pages/Dashboard/Payment/PaymentReceipt";
 import Map from "../pages/Map/Map";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/AboutUs/ContactUs/ContactUs";
+import BookingHistory from "../pages/Dashboard/BookingHistory";
 
 export const router = createBrowserRouter([
     {
@@ -174,6 +175,10 @@ export const router = createBrowserRouter([
                 path: 'assign-decorator',
                 element: <AdminRoute> <AssignDecorator></AssignDecorator> </AdminRoute>
             },
+            {
+                path: 'booking-history',
+                element: <AdminRoute> <BookingHistory></BookingHistory> </AdminRoute>
+            }
         ]
     }
 
