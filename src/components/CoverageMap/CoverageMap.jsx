@@ -45,7 +45,7 @@ const CoverageMap = () => {
                     {
                         coverageAreas.map(center => <Marker position={[center.latitude, center.longitude]} key={center._id}>
                             <Popup>
-                                <strong>{center.district}</strong><br />
+                                <strong>{center.districtName}</strong><br />
                                 
                             </Popup>
                         </Marker>

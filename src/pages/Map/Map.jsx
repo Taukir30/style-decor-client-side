@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import useAxios from '../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../components/Loading/Loading';
+import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 const Map = () => {
@@ -45,7 +46,7 @@ const Map = () => {
                     {
                         coverageAreas.map(center => <Marker position={[center.latitude, center.longitude]} key={center._id}>
                             <Popup>
-                                <strong>{center.district}</strong><br />
+                                <strong>{center.districtName}</strong><br />
 
                             </Popup>
                         </Marker>
