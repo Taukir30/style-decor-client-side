@@ -53,3 +53,18 @@
     9. React Router
     10.Recharts
     11.Sweetalert2
+
+## How to Run StyleDecor Locally
+
+    1. Make sure Node.js (v16+) and Git are installed
+    2. Clone the repository:
+        git clone https://github.com/<your-username>/StyleDecor.git
+    3. Go to the project folder:
+        cd StyleDecor
+    4. Install dependencies:
+        npm install
+    5. Create a .env file if required and add environment variables (see .env.example)
+    6. Start the development server:
+        npm run dev
+    7. Open your browser and visit:
+        http://localhost:5173
