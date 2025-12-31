@@ -58,9 +58,9 @@
 
     1. Make sure Node.js (v16+) and Git are installed
     2. Clone the repository:
-        git clone https://github.com/<your-username>/StyleDecor.git
+        git clone https://github.com/Taukir30/style-decor-client-side
     3. Go to the project folder:
-        cd StyleDecor
+        cd style-decor-client-side
     4. Install dependencies:
         npm install
     5. Create a .env file if required and add environment variables (see .env.example)
