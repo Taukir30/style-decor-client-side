@@ -164,7 +164,7 @@ const BookingHistory = () => {
                             }
                             {
                                 [...Array(totalPages).keys()].map((i) => (
-                                    <button onClick={() => setCurrentPage(i)} className={`btn ${i === currentPage && 'btn-primary'}`}>{i}</button>
+                                    <button key={i} onClick={() => setCurrentPage(i)} className={`btn ${i === currentPage && 'btn-primary'}`}>{i + 1}</button>
                                 ))
                             }
                             {

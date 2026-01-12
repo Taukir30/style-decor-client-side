@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const { user, logOut } = useAuth();
 
-    const {role} = useRole();
+    const { role } = useRole();
 
     // console.log(role)
 
@@ -71,16 +71,16 @@ const Navbar = () => {
                         user ?
                             <div className="dropdown">
                                 <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
-                                    <img src={user?.photoURL} alt="" className='h-[26px] rounded-4xl'/>
+                                    <img src={user?.photoURL} alt="" className='h-[26px] rounded-4xl' />
                                     {/* <IoIosArrowDown /> */}
                                     Profile
                                 </div>
-                                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
+                                <ul tabIndex="-1" className="dropdown-content text-secondary menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
                                     <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
                                     {
                                         role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
                                     }
-                                    
+
                                     <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li>
                                         <button onClick={handleLogout} className=''>Log out</button>
@@ -89,6 +89,13 @@ const Navbar = () => {
                             </div> :
                             <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>
                     }
+
+                    {/* theme toggle */}
+                    <input
+                        type="checkbox"
+                        value="dark"
+                        className="toggle theme-controller text-secondary checked:text-blue-800 col-span-2 col-start-1 row-start-1 border-primary bg-base-200 [--tglbg:var(--color-red-500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:var(--color-blue-900)]" />
+
 
                     {/* <Link to='/join' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Join Us</Link> */}
                 </div>

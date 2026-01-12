@@ -42,35 +42,49 @@ const DashboardLayout = () => {
                         {/* Sidebar toggle icon */}
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
                     </label>
-                    <div className='hidden sm:block'>
-                        <Logo></Logo>
-                    </div>
-                    <div className='block sm:hidden'>
-                        <LogoMini></LogoMini>
+
+                    <div>
+                        <div className='hidden sm:block'>
+                            <Logo></Logo>
+                        </div>
+                        <div className='block sm:hidden'>
+                            <LogoMini></LogoMini>
+                        </div>
                     </div>
 
-                    {
-                        user ?
-                            <div className="dropdown pr-1 md:pr-5">
-                                <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
-                                    <img src={user?.photoURL} alt="" className='h-[26px] w-[26px] rounded-4xl' />
-                                    {/* <IoIosArrowDown /> */}
-                                    <span className="capitalize">{role}</span>
-                                </div>
-                                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
-                                    <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
+                    <div className="flex gap-1 items-center">
 
-                                    {
-                                        role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
-                                    }
-                                    <li><Link to='/dashboard'>Dashboard</Link></li>
-                                    <li>
-                                        <button onClick={handleLogout} className=''>Log out</button>
-                                    </li>
-                                </ul>
-                            </div> :
-                            <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>
-                    }
+                        {
+                            user ?
+                                <div className="dropdown pr-1 md:pr-1">
+                                    <div tabIndex={0} role="button" className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px] pl-1">
+                                        <img src={user?.photoURL} alt="" className='h-[26px] w-[26px] rounded-4xl' />
+                                        {/* <IoIosArrowDown /> */}
+                                        <span className="capitalize">{role}</span>
+                                    </div>
+                                    <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-27 p-1 shadow-sm">
+                                        <li className='text-center font-bold text-secondary my-2 py-1 border border-secondar rounded-4xl'>{user.displayName}</li>
+
+                                        {
+                                            role === 'user' && <li><Link to='/beadecorator'>Become a Decorator</Link></li>
+                                        }
+                                        <li><Link to='/dashboard'>Dashboard</Link></li>
+                                        <li>
+                                            <button onClick={handleLogout} className=''>Log out</button>
+                                        </li>
+                                    </ul>
+                                </div> :
+                                <Link to='/login' className="btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]">Login</Link>
+                        }
+
+                        {/* theme toggle */}
+                        <input
+                            type="checkbox"
+                            value="dark"
+                            className="toggle theme-controller text-secondary checked:text-blue-800 col-span-2 col-start-1 row-start-1 border-primary bg-base-200 [--tglbg:var(--color-red-500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:var(--color-blue-900)]" />
+
+                    </div>
+
 
                 </nav>
                 {/* Page content here */}

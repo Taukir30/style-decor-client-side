@@ -2,16 +2,76 @@
 
 @import "tailwindcss";
 @plugin "daisyui" {
-themes: light --default;
+  themes: light --default, dark;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: #fbc8a1;
+  --color-base-300: #f6fce8;
+  --color-base-content: oklch(37% 0.077 168.94);
   /* --color-primary: #F56A01; */
   --color-primary: #ff7d1a;
+  --color-primary-content: oklch(28% 0.066 53.813);
   --color-secondary: #691E06;
-  --color-base-200: #fbc8a1;
+  --color-secondary-content: oklch(27% 0.077 45.635);
+  --color-accent: #a8ad9b;
+  --color-accent-content: oklch(13% 0.028 261.692);
+  --color-neutral: #444939;
+  --color-neutral-content: oklch(97% 0.021 166.113);
+  --color-info: #0c532b;
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(64% 0.2 131.684);
+  --color-success-content: oklch(27% 0.046 192.524);
+  --color-warning: oklch(76% 0.188 70.08);
+  --color-warning-content: oklch(28% 0.066 53.813);
+  --color-error: #ff493b;
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 1;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: #0f172a;
+  --color-base-200: #1e293b;
+  --color-base-300: #334155;
+  --color-base-content: oklch(97.807% 0.029 256.847);
+  --color-primary: #fb923c;
+  --color-primary-content: oklch(96% 0.018 272.314);
+  --color-secondary: #94a3b8;
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(77% 0.152 181.912);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: #86efac;
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
 body, .trirong{
