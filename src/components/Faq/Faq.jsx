@@ -27,10 +27,10 @@ const Faq = () => {
                 <div className="collapse collapse-arrow bg-[#ffefdc] border border-base-300">
                     <input type="radio" name="my-accordion-2" />
                     <div className="collapse-title font-semibold">Is it free to create an account?</div>
-                    <div className="collapse-content text-sm">Yes, anyone can register on TechDesk for free to explore available tasks or post new job requirements.</div>
+                    <div className="collapse-content text-sm">Yes, anyone can register on StyleDecor for free to explore services or place new appoinments.</div>
                 </div>
             </div>
-            <Link className='btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]'>See More FAQs</Link>
+            {/* <Link className='btn btn-primary text-secondary shadow-none rounded-4xl h-[35px]'>See More FAQs</Link> */}
         </div>
     );
 };

@@ -5,6 +5,7 @@ import CoverageMap from '../../components/CoverageMap/CoverageMap';
 import TopDecorators from '../../components/TopDecorators/TopDecorators';
 import Brands from '../../components/Brands/Brands';
 import Faq from '../../components/Faq/Faq';
+import NewsLatter from '../../components/NewsLater/NewsLatter';
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
             <TopDecorators></TopDecorators>
             <CoverageMap></CoverageMap>
             <Faq></Faq>
+            <NewsLatter></NewsLatter>
         </div>
     );
 };
